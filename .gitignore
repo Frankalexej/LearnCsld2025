@@ -3,3 +3,12 @@
 /observe_outputs
 /slurm_config
 /weights
+__pycache__
+*.log
+*.pt
+*.pth
+*.ckpt
+*.csv
+*.json
+*.yaml
+wandb
