@@ -1,0 +1,12 @@
+{"time":"2026-02-12T10:01:58.833198833Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-02-12T10:01:59.341824732Z","level":"INFO","msg":"stream: created new stream","id":"tvmu5c64"}
+{"time":"2026-02-12T10:01:59.341906672Z","level":"INFO","msg":"handler: started","stream_id":"tvmu5c64"}
+{"time":"2026-02-12T10:01:59.342073498Z","level":"INFO","msg":"stream: started","id":"tvmu5c64"}
+{"time":"2026-02-12T10:01:59.342086338Z","level":"INFO","msg":"writer: started","stream_id":"tvmu5c64"}
+{"time":"2026-02-12T10:01:59.342151363Z","level":"INFO","msg":"sender: started","stream_id":"tvmu5c64"}
+{"time":"2026-02-12T10:14:42.683930572Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-12T10:14:43.007527274Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-12T10:14:43.016149177Z","level":"INFO","msg":"stream: closing","id":"tvmu5c64"}
+{"time":"2026-02-12T10:14:43.016180412Z","level":"INFO","msg":"handler: closed","stream_id":"tvmu5c64"}
+{"time":"2026-02-12T10:14:43.016272583Z","level":"INFO","msg":"sender: closed","stream_id":"tvmu5c64"}
+{"time":"2026-02-12T10:14:43.016290438Z","level":"INFO","msg":"stream: closed","id":"tvmu5c64"}

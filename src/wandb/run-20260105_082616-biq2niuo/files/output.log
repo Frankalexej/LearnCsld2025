@@ -1,0 +1,28 @@
+No checkpoint found, starting training from scratch.
+first phase
+first_end_epoch:101
+d1_Epoch 1/201:   0%|          | 0/1000 [00:00<?, ?it/s]/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/loss.py:634: UserWarning: Using a target size (torch.Size([32, 1, 51])) that is different to the input size (torch.Size([32, 1, 49])). This will likely lead to incorrect results due to broadcasting. Please ensure they have the same size.
+  return F.mse_loss(input, target, reduction=self.reduction)
+d1_Epoch 1/201:   0%|          | 0/1000 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon_SGD_CNN.py", line 266, in <module>
+    main(args.config, run_time)
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon_SGD_CNN.py", line 174, in main
+    loss = criterion(features, targets)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/loss.py", line 634, in forward
+    return F.mse_loss(input, target, reduction=self.reduction)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/torch/nn/functional.py", line 3864, in mse_loss
+    expanded_input, expanded_target = torch.broadcast_tensors(input, target)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/torch/functional.py", line 77, in broadcast_tensors
+    return _VF.broadcast_tensors(tensors)  # type: ignore[attr-defined]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: The size of tensor a (49) must match the size of tensor b (51) at non-singleton dimension 2

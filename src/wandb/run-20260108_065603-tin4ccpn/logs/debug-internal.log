@@ -1,0 +1,14 @@
+{"time":"2026-01-08T06:56:04.511194946Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-01-08T06:56:05.609335872Z","level":"INFO","msg":"stream: created new stream","id":"tin4ccpn"}
+{"time":"2026-01-08T06:56:05.609500767Z","level":"INFO","msg":"handler: started","stream_id":"tin4ccpn"}
+{"time":"2026-01-08T06:56:05.609853703Z","level":"INFO","msg":"stream: started","id":"tin4ccpn"}
+{"time":"2026-01-08T06:56:05.609887147Z","level":"INFO","msg":"writer: started","stream_id":"tin4ccpn"}
+{"time":"2026-01-08T06:56:05.609973463Z","level":"INFO","msg":"sender: started","stream_id":"tin4ccpn"}
+{"time":"2026-01-08T07:24:56.455695534Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":19637}
+{"time":"2026-01-08T07:24:56.467958077Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-01-08T07:25:50.692082494Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-01-08T07:25:50.994595237Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-01-08T07:25:51.015390623Z","level":"INFO","msg":"stream: closing","id":"tin4ccpn"}
+{"time":"2026-01-08T07:25:51.015438574Z","level":"INFO","msg":"handler: closed","stream_id":"tin4ccpn"}
+{"time":"2026-01-08T07:25:51.015595543Z","level":"INFO","msg":"sender: closed","stream_id":"tin4ccpn"}
+{"time":"2026-01-08T07:25:51.015666703Z","level":"INFO","msg":"stream: closed","id":"tin4ccpn"}

@@ -1,0 +1,11 @@
+{"time":"2026-01-05T08:26:17.4242955Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-01-05T08:26:18.507898667Z","level":"INFO","msg":"stream: created new stream","id":"biq2niuo"}
+{"time":"2026-01-05T08:26:18.50802195Z","level":"INFO","msg":"handler: started","stream_id":"biq2niuo"}
+{"time":"2026-01-05T08:26:18.508281094Z","level":"INFO","msg":"stream: started","id":"biq2niuo"}
+{"time":"2026-01-05T08:26:18.508295995Z","level":"INFO","msg":"writer: started","stream_id":"biq2niuo"}
+{"time":"2026-01-05T08:26:18.508366094Z","level":"INFO","msg":"sender: started","stream_id":"biq2niuo"}
+{"time":"2026-01-05T08:26:36.844376427Z","level":"INFO","msg":"stream: closing","id":"biq2niuo"}
+{"time":"2026-01-05T08:26:37.426367594Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-01-05T08:26:37.670302846Z","level":"INFO","msg":"handler: closed","stream_id":"biq2niuo"}
+{"time":"2026-01-05T08:26:37.670492422Z","level":"INFO","msg":"sender: closed","stream_id":"biq2niuo"}
+{"time":"2026-01-05T08:26:37.670515118Z","level":"INFO","msg":"stream: closed","id":"biq2niuo"}

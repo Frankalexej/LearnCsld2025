@@ -1,0 +1,22 @@
+{"time":"2026-02-04T08:40:44.890105243Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-02-04T08:40:45.303750457Z","level":"INFO","msg":"stream: created new stream","id":"toojd6zj"}
+{"time":"2026-02-04T08:40:45.303843532Z","level":"INFO","msg":"handler: started","stream_id":"toojd6zj"}
+{"time":"2026-02-04T08:40:45.304028386Z","level":"INFO","msg":"stream: started","id":"toojd6zj"}
+{"time":"2026-02-04T08:40:45.304102622Z","level":"INFO","msg":"writer: started","stream_id":"toojd6zj"}
+{"time":"2026-02-04T08:40:45.304150636Z","level":"INFO","msg":"sender: started","stream_id":"toojd6zj"}
+{"time":"2026-02-04T08:42:31.401828745Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":1857}
+{"time":"2026-02-04T08:42:34.348967628Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":53}
+{"time":"2026-02-04T08:43:01.05318003Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":2377}
+{"time":"2026-02-04T08:43:01.099772772Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-04T08:50:46.019050266Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":10960}
+{"time":"2026-02-04T08:50:46.142678739Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-02-04T08:52:00.905843704Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":12649}
+{"time":"2026-02-04T08:52:01.148109691Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-02-04T08:52:16.145456994Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":12999}
+{"time":"2026-02-04T08:52:16.153003058Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":14}
+{"time":"2026-02-04T08:54:22.578635004Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-04T08:54:23.324991889Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-04T08:54:23.333403494Z","level":"INFO","msg":"stream: closing","id":"toojd6zj"}
+{"time":"2026-02-04T08:54:23.333436849Z","level":"INFO","msg":"handler: closed","stream_id":"toojd6zj"}
+{"time":"2026-02-04T08:54:23.333567997Z","level":"INFO","msg":"sender: closed","stream_id":"toojd6zj"}
+{"time":"2026-02-04T08:54:23.333591925Z","level":"INFO","msg":"stream: closed","id":"toojd6zj"}

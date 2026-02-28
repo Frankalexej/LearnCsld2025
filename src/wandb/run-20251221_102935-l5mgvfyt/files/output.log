@@ -1,0 +1,13 @@
+No checkpoint found, starting training from scratch.
+Traceback (most recent call last):
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon_SGD.py", line 266, in <module>
+    main(args.config, run_time)
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon_SGD.py", line 159, in main
+    sample_test_wrapper(sample_list,model,config.DEVICE,similarity_config,0)
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon_SGD.py", line 38, in sample_test_wrapper
+    similarity = sample_test(sample_list[left_index], sample_list[left_index+1],model,similarity_config,device)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon_SGD.py", line 46, in sample_test
+    array1_input = array1_input[1]
+                   ^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'array1_input' where it is not associated with a value

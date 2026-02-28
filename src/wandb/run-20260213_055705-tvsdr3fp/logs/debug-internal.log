@@ -1,0 +1,12 @@
+{"time":"2026-02-13T05:57:05.430416718Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-02-13T05:57:05.95265668Z","level":"INFO","msg":"stream: created new stream","id":"tvsdr3fp"}
+{"time":"2026-02-13T05:57:05.952782341Z","level":"INFO","msg":"handler: started","stream_id":"tvsdr3fp"}
+{"time":"2026-02-13T05:57:05.952950897Z","level":"INFO","msg":"stream: started","id":"tvsdr3fp"}
+{"time":"2026-02-13T05:57:05.952964491Z","level":"INFO","msg":"writer: started","stream_id":"tvsdr3fp"}
+{"time":"2026-02-13T05:57:05.953020327Z","level":"INFO","msg":"sender: started","stream_id":"tvsdr3fp"}
+{"time":"2026-02-13T06:15:32.401008672Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-13T06:15:32.708865247Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-13T06:15:32.71751333Z","level":"INFO","msg":"stream: closing","id":"tvsdr3fp"}
+{"time":"2026-02-13T06:15:32.717585246Z","level":"INFO","msg":"handler: closed","stream_id":"tvsdr3fp"}
+{"time":"2026-02-13T06:15:32.717857961Z","level":"INFO","msg":"sender: closed","stream_id":"tvsdr3fp"}
+{"time":"2026-02-13T06:15:32.717917545Z","level":"INFO","msg":"stream: closed","id":"tvsdr3fp"}

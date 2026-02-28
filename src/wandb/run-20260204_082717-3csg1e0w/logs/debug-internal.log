@@ -1,0 +1,30 @@
+{"time":"2026-02-04T08:27:17.486433235Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-02-04T08:27:17.982967857Z","level":"INFO","msg":"stream: created new stream","id":"3csg1e0w"}
+{"time":"2026-02-04T08:27:17.983053451Z","level":"INFO","msg":"handler: started","stream_id":"3csg1e0w"}
+{"time":"2026-02-04T08:27:17.983202475Z","level":"INFO","msg":"stream: started","id":"3csg1e0w"}
+{"time":"2026-02-04T08:27:17.983217626Z","level":"INFO","msg":"writer: started","stream_id":"3csg1e0w"}
+{"time":"2026-02-04T08:27:17.98326192Z","level":"INFO","msg":"sender: started","stream_id":"3csg1e0w"}
+{"time":"2026-02-04T08:30:13.992243901Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/franklhtan-the-university-of-hong-kong/LearnCsld2025/3csg1e0w/file_stream\": dial tcp: lookup api.wandb.ai on 127.0.0.53:53: read udp 127.0.0.1:41471->127.0.0.53:53: i/o timeout"}
+{"time":"2026-02-04T08:30:26.355904953Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/franklhtan-the-university-of-hong-kong/LearnCsld2025/3csg1e0w/file_stream\": dial tcp: lookup api.wandb.ai on 127.0.0.53:53: read udp 127.0.0.1:51839->127.0.0.53:53: i/o timeout"}
+{"time":"2026-02-04T08:32:33.6671772Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":5592}
+{"time":"2026-02-04T08:32:33.913154798Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-02-04T08:32:48.645645094Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":5853}
+{"time":"2026-02-04T08:32:48.905157628Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-02-04T08:33:03.650984069Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":6114}
+{"time":"2026-02-04T08:33:03.922676155Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-02-04T08:33:18.610326702Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":6388}
+{"time":"2026-02-04T08:33:18.884784076Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":6}
+{"time":"2026-02-04T08:38:03.632114085Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":12162}
+{"time":"2026-02-04T08:38:03.86225598Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-02-04T08:38:18.764109005Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":12511}
+{"time":"2026-02-04T08:38:18.932905953Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-02-04T08:38:33.633924902Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":12858}
+{"time":"2026-02-04T08:38:33.862493407Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-02-04T08:40:33.840243901Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":15597}
+{"time":"2026-02-04T08:40:33.858531384Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-04T08:40:41.50003084Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-04T08:40:44.854004838Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-04T08:40:44.863115533Z","level":"INFO","msg":"stream: closing","id":"3csg1e0w"}
+{"time":"2026-02-04T08:40:44.863142013Z","level":"INFO","msg":"handler: closed","stream_id":"3csg1e0w"}
+{"time":"2026-02-04T08:40:44.863244098Z","level":"INFO","msg":"sender: closed","stream_id":"3csg1e0w"}
+{"time":"2026-02-04T08:40:44.863260952Z","level":"INFO","msg":"stream: closed","id":"3csg1e0w"}

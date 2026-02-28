@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_mix_ADAM_CNN_Norm.py", line 319, in <module>
+    main(args.config, run_time)
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_mix_ADAM_CNN_Norm.py", line 130, in main
+    dataset1 = ThisRCDataset(
+               ^^^^^^^^^^^^^^
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/dataset.py", line 191, in __init__
+    for _, row in self.df.iterrows():
+                  ^^^^^^^
+AttributeError: 'NPYDatasetRC_CNN_Norm' object has no attribute 'df'

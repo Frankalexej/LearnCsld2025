@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon.py", line 264, in <module>
+    main(args.config, run_time)
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon.py", line 129, in main
+    model = SimpleNonlinearFCAutoencoder(out_features=config.OUT_FEATURES).to(config.DEVICE)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: SimpleNonlinearFCAutoencoder.__init__() missing 2 required positional arguments: 'in_features' and 'hid_features'

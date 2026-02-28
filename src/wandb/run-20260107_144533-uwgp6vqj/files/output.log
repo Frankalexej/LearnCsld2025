@@ -1,0 +1,11 @@
+No checkpoint found, starting training from scratch.
+first phase
+first_end_epoch:101
+d1_Epoch 1/201:   0%|          | 0/1000 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_mix_ADAM_CNN.py", line 316, in <module>
+    main(args.config, run_time)
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_mix_ADAM_CNN.py", line 230, in main
+    optimizer1.zero_grad()
+    ^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'optimizer1' where it is not associated with a value

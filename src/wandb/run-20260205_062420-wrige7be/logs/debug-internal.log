@@ -1,0 +1,20 @@
+{"time":"2026-02-05T06:24:22.015444418Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-02-05T06:24:22.978889175Z","level":"INFO","msg":"stream: created new stream","id":"wrige7be"}
+{"time":"2026-02-05T06:24:22.97920611Z","level":"INFO","msg":"stream: started","id":"wrige7be"}
+{"time":"2026-02-05T06:24:22.979415218Z","level":"INFO","msg":"writer: started","stream_id":"wrige7be"}
+{"time":"2026-02-05T06:24:22.979468473Z","level":"INFO","msg":"handler: started","stream_id":"wrige7be"}
+{"time":"2026-02-05T06:24:22.979498434Z","level":"INFO","msg":"sender: started","stream_id":"wrige7be"}
+{"time":"2026-02-05T06:29:43.750449811Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":4361}
+{"time":"2026-02-05T06:29:43.859249992Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-05T06:32:28.639157899Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":7443}
+{"time":"2026-02-05T06:32:28.838022918Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-02-05T06:35:28.740964873Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":10984}
+{"time":"2026-02-05T06:35:28.830657627Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-05T06:38:13.767262997Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":14716}
+{"time":"2026-02-05T06:38:13.868861439Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-05T06:38:58.592530538Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-05T06:38:58.885830674Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-05T06:38:58.896490199Z","level":"INFO","msg":"stream: closing","id":"wrige7be"}
+{"time":"2026-02-05T06:38:58.896534073Z","level":"INFO","msg":"handler: closed","stream_id":"wrige7be"}
+{"time":"2026-02-05T06:38:58.896621393Z","level":"INFO","msg":"sender: closed","stream_id":"wrige7be"}
+{"time":"2026-02-05T06:38:58.896639384Z","level":"INFO","msg":"stream: closed","id":"wrige7be"}

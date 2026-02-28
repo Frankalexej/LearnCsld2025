@@ -1,0 +1,22 @@
+{"time":"2026-02-06T06:25:15.174225919Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-02-06T06:25:16.314772234Z","level":"INFO","msg":"stream: created new stream","id":"imlrkfjz"}
+{"time":"2026-02-06T06:25:16.314900964Z","level":"INFO","msg":"handler: started","stream_id":"imlrkfjz"}
+{"time":"2026-02-06T06:25:16.31512405Z","level":"INFO","msg":"stream: started","id":"imlrkfjz"}
+{"time":"2026-02-06T06:25:16.31514204Z","level":"INFO","msg":"writer: started","stream_id":"imlrkfjz"}
+{"time":"2026-02-06T06:25:16.315214829Z","level":"INFO","msg":"sender: started","stream_id":"imlrkfjz"}
+{"time":"2026-02-06T06:26:51.938928016Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":66}
+{"time":"2026-02-06T06:26:52.132556582Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":5}
+{"time":"2026-02-06T06:28:21.890420601Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":1730}
+{"time":"2026-02-06T06:28:22.086401269Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-02-06T06:31:06.882250885Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":4950}
+{"time":"2026-02-06T06:31:07.15602825Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-02-06T06:33:51.876716852Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":8170}
+{"time":"2026-02-06T06:33:52.122176751Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-02-06T06:37:52.04478253Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":13352}
+{"time":"2026-02-06T06:37:52.132989962Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-06T06:39:22.332227931Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-06T06:39:22.669052243Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-06T06:39:22.67915827Z","level":"INFO","msg":"stream: closing","id":"imlrkfjz"}
+{"time":"2026-02-06T06:39:22.67917683Z","level":"INFO","msg":"handler: closed","stream_id":"imlrkfjz"}
+{"time":"2026-02-06T06:39:22.679244797Z","level":"INFO","msg":"sender: closed","stream_id":"imlrkfjz"}
+{"time":"2026-02-06T06:39:22.679277259Z","level":"INFO","msg":"stream: closed","id":"imlrkfjz"}

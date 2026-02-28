@@ -1,0 +1,12 @@
+Loading checkpoint from ../weights/BS32_LR1E4_F4_RC/2/checkpoint_epoch_90.pt
+Traceback (most recent call last):
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon_SGD.py", line 264, in <module>
+    main(args.config, run_time)
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon_SGD.py", line 150, in main
+    model.load_state_dict(torch.load(latest_checkpoint))
+  File "/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 2629, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for SimpleNonlinearFCAutoencoder:
+	size mismatch for encoder.0.weight: copying a param with shape torch.Size([4, 51]) from checkpoint, the shape in current model is torch.Size([32, 51]).
+	size mismatch for encoder.0.bias: copying a param with shape torch.Size([4]) from checkpoint, the shape in current model is torch.Size([32]).
+	size mismatch for decoder.weight: copying a param with shape torch.Size([51, 4]) from checkpoint, the shape in current model is torch.Size([51, 32]).

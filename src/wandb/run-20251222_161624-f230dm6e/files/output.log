@@ -1,0 +1,309 @@
+No checkpoint found, starting training from scratch.
+first phase
+first_end_epoch:51
+d1_Epoch 1/101: 100%|██████████| 1000/1000 [03:44<00:00,  4.46it/s]
+Epoch 1 Loss: 174.6566
+Validation Loss: 246.6364
+d1_Epoch 2/101: 100%|██████████| 1000/1000 [00:04<00:00, 210.55it/s]
+Epoch 2 Loss: 62.2942
+Validation Loss: 121.5810
+d1_Epoch 3/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.41it/s]
+Epoch 3 Loss: 14.8842
+Validation Loss: 38.8110
+d1_Epoch 4/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.75it/s]
+Epoch 4 Loss: 2.9943
+Validation Loss: 23.9177
+d1_Epoch 5/101: 100%|██████████| 1000/1000 [00:03<00:00, 263.64it/s]
+Epoch 5 Loss: 1.7306
+Validation Loss: 23.3229
+d1_Epoch 6/101: 100%|██████████| 1000/1000 [00:03<00:00, 263.80it/s]
+Epoch 6 Loss: 1.3913
+Validation Loss: 24.2483
+d1_Epoch 7/101: 100%|██████████| 1000/1000 [00:03<00:00, 263.52it/s]
+Epoch 7 Loss: 1.3298
+Validation Loss: 24.0592
+d1_Epoch 8/101: 100%|██████████| 1000/1000 [00:03<00:00, 263.87it/s]
+Epoch 8 Loss: 1.2737
+Validation Loss: 23.9405
+d1_Epoch 9/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.11it/s]
+Epoch 9 Loss: 1.2219
+Validation Loss: 24.2637
+d1_Epoch 10/101: 100%|██████████| 1000/1000 [00:03<00:00, 266.91it/s]
+Epoch 10 Loss: 1.1700
+Validation Loss: 24.3243
+d1_Epoch 11/101: 100%|██████████| 1000/1000 [00:03<00:00, 267.67it/s]
+Epoch 11 Loss: 1.1236
+Validation Loss: 24.2535
+d1_Epoch 12/101: 100%|██████████| 1000/1000 [00:03<00:00, 267.54it/s]
+Epoch 12 Loss: 1.0766
+Validation Loss: 25.2386
+d1_Epoch 13/101: 100%|██████████| 1000/1000 [00:03<00:00, 267.35it/s]
+Epoch 13 Loss: 1.0337
+Validation Loss: 24.8460
+d1_Epoch 14/101: 100%|██████████| 1000/1000 [00:03<00:00, 266.57it/s]
+Epoch 14 Loss: 0.9929
+Validation Loss: 24.2712
+d1_Epoch 15/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.41it/s]
+Epoch 15 Loss: 0.9515
+Validation Loss: 25.0883
+d1_Epoch 16/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.28it/s]
+Epoch 16 Loss: 0.9146
+Validation Loss: 24.6366
+d1_Epoch 17/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.78it/s]
+Epoch 17 Loss: 0.8774
+Validation Loss: 24.7735
+d1_Epoch 18/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.33it/s]
+Epoch 18 Loss: 0.8429
+Validation Loss: 24.4776
+d1_Epoch 19/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.05it/s]
+Epoch 19 Loss: 0.8097
+Validation Loss: 23.9701
+d1_Epoch 20/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.71it/s]
+Epoch 20 Loss: 0.7750
+Validation Loss: 24.1621
+d1_Epoch 21/101: 100%|██████████| 1000/1000 [00:03<00:00, 266.36it/s]
+Epoch 21 Loss: 0.7443
+Validation Loss: 23.7211
+d1_Epoch 22/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.84it/s]
+Epoch 22 Loss: 0.7132
+Validation Loss: 21.9597
+d1_Epoch 23/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.44it/s]
+Epoch 23 Loss: 0.6837
+Validation Loss: 21.2470
+d1_Epoch 24/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.58it/s]
+Epoch 24 Loss: 0.6540
+Validation Loss: 20.3804
+d1_Epoch 25/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.84it/s]
+Epoch 25 Loss: 0.6260
+Validation Loss: 20.0549
+d1_Epoch 26/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.68it/s]
+Epoch 26 Loss: 0.6003
+Validation Loss: 20.3402
+d1_Epoch 27/101: 100%|██████████| 1000/1000 [00:03<00:00, 263.83it/s]
+Epoch 27 Loss: 0.5765
+Validation Loss: 20.3105
+d1_Epoch 28/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.05it/s]
+Epoch 28 Loss: 0.5541
+Validation Loss: 20.8301
+d1_Epoch 29/101: 100%|██████████| 1000/1000 [00:03<00:00, 263.76it/s]
+Epoch 29 Loss: 0.5335
+Validation Loss: 20.9145
+d1_Epoch 30/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.86it/s]
+Epoch 30 Loss: 0.5155
+Validation Loss: 20.8748
+d1_Epoch 31/101: 100%|██████████| 1000/1000 [00:03<00:00, 266.76it/s]
+Epoch 31 Loss: 0.4976
+Validation Loss: 20.9835
+d1_Epoch 32/101: 100%|██████████| 1000/1000 [00:03<00:00, 266.40it/s]
+Epoch 32 Loss: 0.4822
+Validation Loss: 20.8962
+d1_Epoch 33/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.83it/s]
+Epoch 33 Loss: 0.4672
+Validation Loss: 21.0485
+d1_Epoch 34/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.19it/s]
+Epoch 34 Loss: 0.4532
+Validation Loss: 21.4559
+d1_Epoch 35/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.72it/s]
+Epoch 35 Loss: 0.4400
+Validation Loss: 21.5916
+d1_Epoch 36/101: 100%|██████████| 1000/1000 [00:03<00:00, 263.95it/s]
+Epoch 36 Loss: 0.4273
+Validation Loss: 21.4083
+d1_Epoch 37/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.79it/s]
+Epoch 37 Loss: 0.4150
+Validation Loss: 21.6817
+d1_Epoch 38/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.31it/s]
+Epoch 38 Loss: 0.4039
+Validation Loss: 21.7744
+d1_Epoch 39/101: 100%|██████████| 1000/1000 [00:03<00:00, 263.88it/s]
+Epoch 39 Loss: 0.3936
+Validation Loss: 21.5766
+d1_Epoch 40/101: 100%|██████████| 1000/1000 [00:03<00:00, 263.71it/s]
+Epoch 40 Loss: 0.3832
+Validation Loss: 21.5574
+d1_Epoch 41/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.11it/s]
+Epoch 41 Loss: 0.3727
+Validation Loss: 21.4263
+d1_Epoch 42/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.32it/s]
+Epoch 42 Loss: 0.3627
+Validation Loss: 22.2042
+d1_Epoch 43/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.16it/s]
+Epoch 43 Loss: 0.3540
+Validation Loss: 21.5244
+d1_Epoch 44/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.00it/s]
+Epoch 44 Loss: 0.3444
+Validation Loss: 21.9484
+d1_Epoch 45/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.81it/s]
+Epoch 45 Loss: 0.3350
+Validation Loss: 21.9510
+d1_Epoch 46/101: 100%|██████████| 1000/1000 [00:03<00:00, 265.28it/s]
+Epoch 46 Loss: 0.3264
+Validation Loss: 21.6705
+d1_Epoch 47/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.16it/s]
+Epoch 47 Loss: 0.3172
+Validation Loss: 21.6810
+d1_Epoch 48/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.11it/s]
+Epoch 48 Loss: 0.3086
+Validation Loss: 22.2674
+d1_Epoch 49/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.14it/s]
+Epoch 49 Loss: 0.3005
+Validation Loss: 21.5300
+d1_Epoch 50/101: 100%|██████████| 1000/1000 [00:03<00:00, 264.49it/s]
+Epoch 50 Loss: 0.2925
+Validation Loss: 21.7934
+second phase:
+second_start_epoch:51
+d2_Epoch 51/101: 100%|██████████| 500/500 [01:24<00:00,  5.92it/s]
+Epoch 51 Loss: 18.0870
+Validation Loss: 7.3913
+d2_Epoch 52/101: 100%|██████████| 500/500 [00:01<00:00, 265.63it/s]
+Epoch 52 Loss: 1.5655
+Validation Loss: 9.0097
+/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_class_SGD.py:68: RuntimeWarning: invalid value encountered in divide
+  norm_feat2 = feat2 / np.linalg.norm(feat2)
+/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_class_SGD.py:66: RuntimeWarning: invalid value encountered in divide
+  norm_feat1 = feat1 / np.linalg.norm(feat1)
+d2_Epoch 53/101: 100%|██████████| 500/500 [00:01<00:00, 266.65it/s]
+Epoch 53 Loss: 1.1330
+Validation Loss: 9.9904
+d2_Epoch 54/101: 100%|██████████| 500/500 [00:01<00:00, 266.32it/s]
+Epoch 54 Loss: 1.1252
+Validation Loss: 10.4042
+d2_Epoch 55/101: 100%|██████████| 500/500 [00:01<00:00, 266.64it/s]
+Epoch 55 Loss: 1.1190
+Validation Loss: 10.6727
+d2_Epoch 56/101: 100%|██████████| 500/500 [00:01<00:00, 265.33it/s]
+Epoch 56 Loss: 1.1131
+Validation Loss: 10.8221
+d2_Epoch 57/101: 100%|██████████| 500/500 [00:01<00:00, 265.07it/s]
+Epoch 57 Loss: 1.1067
+Validation Loss: 10.9019
+d2_Epoch 58/101: 100%|██████████| 500/500 [00:01<00:00, 265.48it/s]
+Epoch 58 Loss: 1.1016
+Validation Loss: 10.9566
+d2_Epoch 59/101: 100%|██████████| 500/500 [00:01<00:00, 265.09it/s]
+Epoch 59 Loss: 1.0954
+Validation Loss: 10.9958
+d2_Epoch 60/101: 100%|██████████| 500/500 [00:01<00:00, 265.63it/s]
+Epoch 60 Loss: 1.0892
+Validation Loss: 11.0075
+d2_Epoch 61/101: 100%|██████████| 500/500 [00:01<00:00, 266.19it/s]
+Epoch 61 Loss: 1.0812
+Validation Loss: 11.1478
+d2_Epoch 62/101: 100%|██████████| 500/500 [00:01<00:00, 263.52it/s]
+Epoch 62 Loss: 1.0508
+Validation Loss: 11.6563
+d2_Epoch 63/101: 100%|██████████| 500/500 [00:01<00:00, 266.18it/s]
+Epoch 63 Loss: 0.6535
+Validation Loss: 19.0380
+d2_Epoch 64/101: 100%|██████████| 500/500 [00:01<00:00, 265.72it/s]
+Epoch 64 Loss: 0.0344
+Validation Loss: 26.0168
+d2_Epoch 65/101: 100%|██████████| 500/500 [00:01<00:00, 263.25it/s]
+Epoch 65 Loss: 0.0140
+Validation Loss: 27.1702
+d2_Epoch 66/101: 100%|██████████| 500/500 [00:02<00:00, 248.85it/s]
+Epoch 66 Loss: 0.0098
+Validation Loss: 27.2487
+d2_Epoch 67/101: 100%|██████████| 500/500 [00:01<00:00, 265.67it/s]
+Epoch 67 Loss: 0.0083
+Validation Loss: 27.6784
+d2_Epoch 68/101: 100%|██████████| 500/500 [00:01<00:00, 264.15it/s]
+Epoch 68 Loss: 0.0070
+Validation Loss: 27.6476
+d2_Epoch 69/101: 100%|██████████| 500/500 [00:01<00:00, 266.89it/s]
+Epoch 69 Loss: 0.0056
+Validation Loss: 27.5489
+d2_Epoch 70/101: 100%|██████████| 500/500 [00:01<00:00, 266.09it/s]
+Epoch 70 Loss: 0.0055
+Validation Loss: 27.8678
+d2_Epoch 71/101: 100%|██████████| 500/500 [00:01<00:00, 264.67it/s]
+Epoch 71 Loss: 0.0045
+Validation Loss: 27.6645
+d2_Epoch 72/101: 100%|██████████| 500/500 [00:01<00:00, 265.86it/s]
+Epoch 72 Loss: 0.0044
+Validation Loss: 28.0410
+d2_Epoch 73/101: 100%|██████████| 500/500 [00:01<00:00, 266.74it/s]
+Epoch 73 Loss: 0.0041
+Validation Loss: 28.0372
+d2_Epoch 74/101: 100%|██████████| 500/500 [00:01<00:00, 265.79it/s]
+Epoch 74 Loss: 0.0036
+Validation Loss: 28.1516
+d2_Epoch 75/101: 100%|██████████| 500/500 [00:01<00:00, 266.18it/s]
+Epoch 75 Loss: 0.0033
+Validation Loss: 28.0467
+d2_Epoch 76/101: 100%|██████████| 500/500 [00:01<00:00, 266.35it/s]
+Epoch 76 Loss: 0.0033
+Validation Loss: 27.9959
+d2_Epoch 77/101: 100%|██████████| 500/500 [00:01<00:00, 263.95it/s]
+Epoch 77 Loss: 0.0033
+Validation Loss: 28.0475
+d2_Epoch 78/101: 100%|██████████| 500/500 [00:01<00:00, 265.59it/s]
+Epoch 78 Loss: 0.0031
+Validation Loss: 28.2680
+d2_Epoch 79/101: 100%|██████████| 500/500 [00:01<00:00, 265.24it/s]
+Epoch 79 Loss: 0.0024
+Validation Loss: 28.0077
+d2_Epoch 80/101: 100%|██████████| 500/500 [00:01<00:00, 264.81it/s]
+Epoch 80 Loss: 0.0030
+Validation Loss: 28.1832
+d2_Epoch 81/101: 100%|██████████| 500/500 [00:01<00:00, 265.50it/s]
+Epoch 81 Loss: 0.0026
+Validation Loss: 28.2235
+d2_Epoch 82/101: 100%|██████████| 500/500 [00:01<00:00, 264.78it/s]
+Epoch 82 Loss: 0.0023
+Validation Loss: 28.0499
+d2_Epoch 83/101: 100%|██████████| 500/500 [00:01<00:00, 265.68it/s]
+Epoch 83 Loss: 0.0026
+Validation Loss: 28.1839
+d2_Epoch 84/101: 100%|██████████| 500/500 [00:01<00:00, 265.63it/s]
+Epoch 84 Loss: 0.0022
+Validation Loss: 28.1246
+d2_Epoch 85/101: 100%|██████████| 500/500 [00:01<00:00, 265.51it/s]
+Epoch 85 Loss: 0.0023
+Validation Loss: 28.2050
+d2_Epoch 86/101: 100%|██████████| 500/500 [00:01<00:00, 265.79it/s]
+Epoch 86 Loss: 0.0020
+Validation Loss: 28.1712
+d2_Epoch 87/101: 100%|██████████| 500/500 [00:01<00:00, 265.59it/s]
+Epoch 87 Loss: 0.0018
+Validation Loss: 28.3063
+d2_Epoch 88/101: 100%|██████████| 500/500 [00:01<00:00, 265.53it/s]
+Epoch 88 Loss: 0.0020
+Validation Loss: 28.1628
+d2_Epoch 89/101: 100%|██████████| 500/500 [00:01<00:00, 266.30it/s]
+Epoch 89 Loss: 0.0021
+Validation Loss: 28.3536
+d2_Epoch 90/101: 100%|██████████| 500/500 [00:01<00:00, 265.54it/s]
+Epoch 90 Loss: 0.0018
+Validation Loss: 28.4036
+d2_Epoch 91/101: 100%|██████████| 500/500 [00:01<00:00, 265.01it/s]
+Epoch 91 Loss: 0.0018
+Validation Loss: 28.3357
+d2_Epoch 92/101: 100%|██████████| 500/500 [00:01<00:00, 263.77it/s]
+Epoch 92 Loss: 0.0018
+Validation Loss: 28.5118
+d2_Epoch 93/101: 100%|██████████| 500/500 [00:01<00:00, 264.72it/s]
+Epoch 93 Loss: 0.0016
+Validation Loss: 28.5922
+d2_Epoch 94/101: 100%|██████████| 500/500 [00:01<00:00, 264.90it/s]
+Epoch 94 Loss: 0.0014
+Validation Loss: 28.4366
+d2_Epoch 95/101: 100%|██████████| 500/500 [00:01<00:00, 264.38it/s]
+Epoch 95 Loss: 0.0017
+Validation Loss: 28.4395
+d2_Epoch 96/101: 100%|██████████| 500/500 [00:01<00:00, 264.42it/s]
+Epoch 96 Loss: 0.0013
+Validation Loss: 28.3955
+d2_Epoch 97/101: 100%|██████████| 500/500 [00:01<00:00, 264.06it/s]
+Epoch 97 Loss: 0.0017
+Validation Loss: 28.4465
+d2_Epoch 98/101: 100%|██████████| 500/500 [00:01<00:00, 265.68it/s]
+Epoch 98 Loss: 0.0014
+Validation Loss: 28.4624
+d2_Epoch 99/101: 100%|██████████| 500/500 [00:01<00:00, 265.77it/s]
+Epoch 99 Loss: 0.0014
+Validation Loss: 28.5325
+d2_Epoch 100/101: 100%|██████████| 500/500 [00:01<00:00, 265.58it/s]
+Epoch 100 Loss: 0.0013
+Validation Loss: 28.6282

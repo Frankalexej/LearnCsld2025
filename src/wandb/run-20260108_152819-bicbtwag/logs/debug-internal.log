@@ -1,0 +1,11 @@
+{"time":"2026-01-08T15:28:19.484774425Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-01-08T15:28:20.060917004Z","level":"INFO","msg":"stream: created new stream","id":"bicbtwag"}
+{"time":"2026-01-08T15:28:20.061218033Z","level":"INFO","msg":"stream: started","id":"bicbtwag"}
+{"time":"2026-01-08T15:28:20.063868161Z","level":"INFO","msg":"handler: started","stream_id":"bicbtwag"}
+{"time":"2026-01-08T15:28:20.06395686Z","level":"INFO","msg":"writer: started","stream_id":"bicbtwag"}
+{"time":"2026-01-08T15:28:20.064100819Z","level":"INFO","msg":"sender: started","stream_id":"bicbtwag"}
+{"time":"2026-01-08T15:43:33.341527443Z","level":"INFO","msg":"stream: closing","id":"bicbtwag"}
+{"time":"2026-01-08T15:43:34.142316385Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-01-08T15:43:34.39713654Z","level":"INFO","msg":"handler: closed","stream_id":"bicbtwag"}
+{"time":"2026-01-08T15:43:34.397320834Z","level":"INFO","msg":"sender: closed","stream_id":"bicbtwag"}
+{"time":"2026-01-08T15:43:34.397365484Z","level":"INFO","msg":"stream: closed","id":"bicbtwag"}

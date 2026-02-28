@@ -1,0 +1,22 @@
+No checkpoint found, starting training from scratch.
+first phase
+first_end_epoch:101
+d1_Epoch 1/201:   0%|          | 0/1000 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon.py", line 264, in <module>
+    main(args.config, run_time)
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon.py", line 173, in main
+    loss = criterion(features, targets)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/loss.py", line 12, in forward
+    loss = self.reduction(y_pred, y_true)
+           ^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1964, in __getattr__
+    raise AttributeError(
+AttributeError: 'SimpleMSE' object has no attribute 'reduction'

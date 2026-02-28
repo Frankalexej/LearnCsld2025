@@ -1,0 +1,18 @@
+{"time":"2026-02-04T04:21:43.226838925Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-02-04T04:21:43.73959629Z","level":"INFO","msg":"stream: created new stream","id":"hv57ubey"}
+{"time":"2026-02-04T04:21:43.739684159Z","level":"INFO","msg":"handler: started","stream_id":"hv57ubey"}
+{"time":"2026-02-04T04:21:43.739847383Z","level":"INFO","msg":"stream: started","id":"hv57ubey"}
+{"time":"2026-02-04T04:21:43.739861763Z","level":"INFO","msg":"writer: started","stream_id":"hv57ubey"}
+{"time":"2026-02-04T04:21:43.739924294Z","level":"INFO","msg":"sender: started","stream_id":"hv57ubey"}
+{"time":"2026-02-04T04:26:14.548360287Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":4717}
+{"time":"2026-02-04T04:26:14.575454254Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-04T04:27:59.323845516Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":6686}
+{"time":"2026-02-04T04:27:59.573960195Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-02-04T04:33:14.436687982Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":13673}
+{"time":"2026-02-04T04:33:14.502246099Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-04T04:34:39.200487253Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-04T04:34:39.735153149Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-04T04:34:39.743498019Z","level":"INFO","msg":"stream: closing","id":"hv57ubey"}
+{"time":"2026-02-04T04:34:39.743535449Z","level":"INFO","msg":"handler: closed","stream_id":"hv57ubey"}
+{"time":"2026-02-04T04:34:39.743615189Z","level":"INFO","msg":"sender: closed","stream_id":"hv57ubey"}
+{"time":"2026-02-04T04:34:39.743638909Z","level":"INFO","msg":"stream: closed","id":"hv57ubey"}

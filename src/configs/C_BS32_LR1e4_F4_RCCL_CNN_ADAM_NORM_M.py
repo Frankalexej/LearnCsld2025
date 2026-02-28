@@ -1,0 +1,27 @@
+# Configuration parameters
+BATCH_SIZE = 32
+PRE_EPOCHS = 100
+POST_EPOCHS = 100
+LR = 1e-4
+READ_BASE_PATH = '/mnt/storage/ldl_linguistics/PhonGen2025'
+MODEL_LOAD_BASE_PATH = '/mnt/storage/franklhtan/projects/LearnCsld2025'
+WRITE_BASE_PATH = '/mnt/storage/franklhtan/projects/LearnCsld2025'
+CSV_PATH = '/mnt/storage/ldl_linguistics/PhonGen2025/data_251011/data_train_phase1/metadata_train_phase1.csv'
+CSV_PATH2 = '/mnt/storage/ldl_linguistics/PhonGen2025/data_251011/data_train_phase2_a/metadata_train_phase2_a.csv'
+CSV_PATH3 = '/mnt/storage/ldl_linguistics/PhonGen2025/data_251011/data_test_a/metadata_test_a.csv'
+DEVICE = 'cuda'
+IN_FEATURES = 51
+HID_FEATURES = 4
+OUT_FEATURES = 8
+# Notice that because we are desigining this to be only either two identical CLs or RCCL or RCRC, so number of features do not differ. 
+PRE_METHOD = "RC"
+POST_METHOD = "CL"
+
+# Seed control
+BASE_SEED = 20260109          # shared across the entire project
+DETERMINISTIC = False         # True only if you need strict determinism
+
+SIMILARITY = "euclidean"
+RUN_NAMES = ['NORM_BS32_LR1E4_F4_RCCL_CNN_ADAM', 'NORM_BS32_LR1E4_F4_RCCL_CNN_ADAM_FZ', 'NORM_BS32_LR1E4_F4_RCRC_CNN_ADAM', 'NORM_BS32_LR1E4_F4_RCRC_CNN_ADAM_FZ']
+RUN_TIMES_START = 3
+RUN_TIMES_END = RUN_TIMES_START+6

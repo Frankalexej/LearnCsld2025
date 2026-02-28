@@ -1,0 +1,11 @@
+{"time":"2026-01-08T04:26:48.25967119Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-01-08T04:26:49.277914259Z","level":"INFO","msg":"stream: created new stream","id":"ak2v2pin"}
+{"time":"2026-01-08T04:26:49.278021254Z","level":"INFO","msg":"handler: started","stream_id":"ak2v2pin"}
+{"time":"2026-01-08T04:26:49.278238407Z","level":"INFO","msg":"stream: started","id":"ak2v2pin"}
+{"time":"2026-01-08T04:26:49.278254712Z","level":"INFO","msg":"writer: started","stream_id":"ak2v2pin"}
+{"time":"2026-01-08T04:26:49.278316703Z","level":"INFO","msg":"sender: started","stream_id":"ak2v2pin"}
+{"time":"2026-01-08T04:26:55.216906306Z","level":"INFO","msg":"stream: closing","id":"ak2v2pin"}
+{"time":"2026-01-08T04:26:56.549970284Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-01-08T04:26:56.89000506Z","level":"INFO","msg":"handler: closed","stream_id":"ak2v2pin"}
+{"time":"2026-01-08T04:26:56.890221894Z","level":"INFO","msg":"sender: closed","stream_id":"ak2v2pin"}
+{"time":"2026-01-08T04:26:56.890245468Z","level":"INFO","msg":"stream: closed","id":"ak2v2pin"}

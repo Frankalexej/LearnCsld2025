@@ -1,0 +1,14 @@
+{"time":"2026-01-28T12:57:42.557428805Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-01-28T12:57:43.766395631Z","level":"INFO","msg":"stream: created new stream","id":"p28wmtvp"}
+{"time":"2026-01-28T12:57:43.766510206Z","level":"INFO","msg":"handler: started","stream_id":"p28wmtvp"}
+{"time":"2026-01-28T12:57:43.766702583Z","level":"INFO","msg":"stream: started","id":"p28wmtvp"}
+{"time":"2026-01-28T12:57:43.766713259Z","level":"INFO","msg":"writer: started","stream_id":"p28wmtvp"}
+{"time":"2026-01-28T12:57:43.766781124Z","level":"INFO","msg":"sender: started","stream_id":"p28wmtvp"}
+{"time":"2026-01-28T13:20:34.685592124Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":15905}
+{"time":"2026-01-28T13:20:34.762155314Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-01-28T13:24:42.336589906Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-01-28T13:24:42.778702474Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-01-28T13:24:42.788246606Z","level":"INFO","msg":"stream: closing","id":"p28wmtvp"}
+{"time":"2026-01-28T13:24:42.788278035Z","level":"INFO","msg":"handler: closed","stream_id":"p28wmtvp"}
+{"time":"2026-01-28T13:24:42.78840154Z","level":"INFO","msg":"sender: closed","stream_id":"p28wmtvp"}
+{"time":"2026-01-28T13:24:42.788421585Z","level":"INFO","msg":"stream: closed","id":"p28wmtvp"}

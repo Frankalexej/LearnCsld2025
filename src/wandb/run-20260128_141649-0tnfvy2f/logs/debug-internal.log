@@ -1,0 +1,20 @@
+{"time":"2026-01-28T14:16:49.472839669Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-01-28T14:16:49.971706998Z","level":"INFO","msg":"stream: created new stream","id":"0tnfvy2f"}
+{"time":"2026-01-28T14:16:49.971790133Z","level":"INFO","msg":"handler: started","stream_id":"0tnfvy2f"}
+{"time":"2026-01-28T14:16:49.97196849Z","level":"INFO","msg":"stream: started","id":"0tnfvy2f"}
+{"time":"2026-01-28T14:16:49.971982066Z","level":"INFO","msg":"writer: started","stream_id":"0tnfvy2f"}
+{"time":"2026-01-28T14:16:49.972031804Z","level":"INFO","msg":"sender: started","stream_id":"0tnfvy2f"}
+{"time":"2026-01-28T14:20:05.782366988Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":2398}
+{"time":"2026-01-28T14:20:05.943003165Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-01-28T14:34:05.881189439Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":12843}
+{"time":"2026-01-28T14:34:05.903066783Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-01-28T14:37:05.770446973Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":15245}
+{"time":"2026-01-28T14:37:05.939384207Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-01-28T14:41:50.951258499Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":19055}
+{"time":"2026-01-28T14:41:51.192101146Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-01-28T14:42:29.027645892Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-01-28T14:42:29.370698338Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-01-28T14:42:29.379702621Z","level":"INFO","msg":"stream: closing","id":"0tnfvy2f"}
+{"time":"2026-01-28T14:42:29.379726112Z","level":"INFO","msg":"handler: closed","stream_id":"0tnfvy2f"}
+{"time":"2026-01-28T14:42:29.379829768Z","level":"INFO","msg":"sender: closed","stream_id":"0tnfvy2f"}
+{"time":"2026-01-28T14:42:29.379844635Z","level":"INFO","msg":"stream: closed","id":"0tnfvy2f"}

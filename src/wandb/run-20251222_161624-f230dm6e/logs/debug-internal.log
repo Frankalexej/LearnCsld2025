@@ -1,0 +1,18 @@
+{"time":"2025-12-22T16:16:26.20713493Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2025-12-22T16:16:27.115022438Z","level":"INFO","msg":"stream: created new stream","id":"f230dm6e"}
+{"time":"2025-12-22T16:16:27.115134044Z","level":"INFO","msg":"handler: started","stream_id":"f230dm6e"}
+{"time":"2025-12-22T16:16:27.115392123Z","level":"INFO","msg":"stream: started","id":"f230dm6e"}
+{"time":"2025-12-22T16:16:27.115430624Z","level":"INFO","msg":"writer: started","stream_id":"f230dm6e"}
+{"time":"2025-12-22T16:16:27.115487388Z","level":"INFO","msg":"sender: started","stream_id":"f230dm6e"}
+{"time":"2025-12-22T16:24:13.425329759Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":1267}
+{"time":"2025-12-22T16:24:13.492995726Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2025-12-22T16:28:58.285033401Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":5337}
+{"time":"2025-12-22T16:28:58.477816638Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2025-12-22T16:31:13.38902265Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":6571}
+{"time":"2025-12-22T16:31:13.533098659Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":21}
+{"time":"2025-12-22T16:35:09.211249489Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-12-22T16:35:09.531873741Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-12-22T16:35:09.542523265Z","level":"INFO","msg":"stream: closing","id":"f230dm6e"}
+{"time":"2025-12-22T16:35:09.542555272Z","level":"INFO","msg":"handler: closed","stream_id":"f230dm6e"}
+{"time":"2025-12-22T16:35:09.542699999Z","level":"INFO","msg":"sender: closed","stream_id":"f230dm6e"}
+{"time":"2025-12-22T16:35:09.542717105Z","level":"INFO","msg":"stream: closed","id":"f230dm6e"}

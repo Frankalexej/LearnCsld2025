@@ -1,0 +1,22 @@
+{"time":"2026-02-06T07:27:56.67323633Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-02-06T07:27:57.17806905Z","level":"INFO","msg":"stream: created new stream","id":"pzhigsnr"}
+{"time":"2026-02-06T07:27:57.178172861Z","level":"INFO","msg":"handler: started","stream_id":"pzhigsnr"}
+{"time":"2026-02-06T07:27:57.178334929Z","level":"INFO","msg":"stream: started","id":"pzhigsnr"}
+{"time":"2026-02-06T07:27:57.178349644Z","level":"INFO","msg":"writer: started","stream_id":"pzhigsnr"}
+{"time":"2026-02-06T07:27:57.178398965Z","level":"INFO","msg":"sender: started","stream_id":"pzhigsnr"}
+{"time":"2026-02-06T07:30:57.78284001Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":3427}
+{"time":"2026-02-06T07:30:57.983784014Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-02-06T07:31:27.823105023Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":4005}
+{"time":"2026-02-06T07:31:27.904033017Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-06T07:31:57.952739757Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":4583}
+{"time":"2026-02-06T07:31:57.979258992Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-06T07:37:12.853048908Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":11150}
+{"time":"2026-02-06T07:37:12.936482059Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-06T07:39:42.952199777Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":14689}
+{"time":"2026-02-06T07:39:43.036747067Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-06T07:40:21.79503694Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-06T07:40:22.284836203Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-06T07:40:22.294748084Z","level":"INFO","msg":"stream: closing","id":"pzhigsnr"}
+{"time":"2026-02-06T07:40:22.294810947Z","level":"INFO","msg":"handler: closed","stream_id":"pzhigsnr"}
+{"time":"2026-02-06T07:40:22.294969559Z","level":"INFO","msg":"sender: closed","stream_id":"pzhigsnr"}
+{"time":"2026-02-06T07:40:22.29499236Z","level":"INFO","msg":"stream: closed","id":"pzhigsnr"}

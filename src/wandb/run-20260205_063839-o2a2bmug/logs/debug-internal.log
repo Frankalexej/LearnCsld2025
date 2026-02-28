@@ -1,0 +1,20 @@
+{"time":"2026-02-05T06:38:39.840692836Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-02-05T06:38:40.334191259Z","level":"INFO","msg":"stream: created new stream","id":"o2a2bmug"}
+{"time":"2026-02-05T06:38:40.334275519Z","level":"INFO","msg":"handler: started","stream_id":"o2a2bmug"}
+{"time":"2026-02-05T06:38:40.334427942Z","level":"INFO","msg":"stream: started","id":"o2a2bmug"}
+{"time":"2026-02-05T06:38:40.334435453Z","level":"INFO","msg":"writer: started","stream_id":"o2a2bmug"}
+{"time":"2026-02-05T06:38:40.334481133Z","level":"INFO","msg":"sender: started","stream_id":"o2a2bmug"}
+{"time":"2026-02-05T06:45:11.143120058Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":7233}
+{"time":"2026-02-05T06:45:11.224771831Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-05T06:46:10.94701168Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":8351}
+{"time":"2026-02-05T06:46:11.201488415Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":15}
+{"time":"2026-02-05T06:47:40.899269487Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":10424}
+{"time":"2026-02-05T06:47:40.899765024Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":7}
+{"time":"2026-02-05T06:49:55.986982013Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":13607}
+{"time":"2026-02-05T06:49:56.162884082Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-02-05T06:51:19.095996025Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-05T06:51:19.395540375Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-05T06:51:19.405230479Z","level":"INFO","msg":"stream: closing","id":"o2a2bmug"}
+{"time":"2026-02-05T06:51:19.405293714Z","level":"INFO","msg":"handler: closed","stream_id":"o2a2bmug"}
+{"time":"2026-02-05T06:51:19.40542616Z","level":"INFO","msg":"sender: closed","stream_id":"o2a2bmug"}
+{"time":"2026-02-05T06:51:19.40546676Z","level":"INFO","msg":"stream: closed","id":"o2a2bmug"}

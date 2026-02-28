@@ -1,0 +1,20 @@
+{"time":"2026-02-05T07:30:47.322123509Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-02-05T07:30:47.836148452Z","level":"INFO","msg":"stream: created new stream","id":"80bup5a1"}
+{"time":"2026-02-05T07:30:47.836267388Z","level":"INFO","msg":"handler: started","stream_id":"80bup5a1"}
+{"time":"2026-02-05T07:30:47.836541667Z","level":"INFO","msg":"stream: started","id":"80bup5a1"}
+{"time":"2026-02-05T07:30:47.836535722Z","level":"INFO","msg":"writer: started","stream_id":"80bup5a1"}
+{"time":"2026-02-05T07:30:47.836589017Z","level":"INFO","msg":"sender: started","stream_id":"80bup5a1"}
+{"time":"2026-02-05T07:35:18.528707882Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":5007}
+{"time":"2026-02-05T07:35:18.665004263Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-02-05T07:40:18.362821036Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":11014}
+{"time":"2026-02-05T07:40:18.618661742Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":9}
+{"time":"2026-02-05T07:42:48.51650412Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":13786}
+{"time":"2026-02-05T07:42:48.594957726Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-02-05T07:43:03.63734168Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":14003}
+{"time":"2026-02-05T07:43:03.784173843Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":13}
+{"time":"2026-02-05T07:44:51.570233748Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-05T07:44:51.897989826Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-05T07:44:51.90725124Z","level":"INFO","msg":"stream: closing","id":"80bup5a1"}
+{"time":"2026-02-05T07:44:51.907298206Z","level":"INFO","msg":"handler: closed","stream_id":"80bup5a1"}
+{"time":"2026-02-05T07:44:51.917557412Z","level":"INFO","msg":"sender: closed","stream_id":"80bup5a1"}
+{"time":"2026-02-05T07:44:51.917589228Z","level":"INFO","msg":"stream: closed","id":"80bup5a1"}

@@ -1,0 +1,22 @@
+{"time":"2026-01-09T06:58:09.472689609Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-01-09T06:58:10.492360289Z","level":"INFO","msg":"stream: created new stream","id":"hcor203v"}
+{"time":"2026-01-09T06:58:10.492483055Z","level":"INFO","msg":"handler: started","stream_id":"hcor203v"}
+{"time":"2026-01-09T06:58:10.492688888Z","level":"INFO","msg":"stream: started","id":"hcor203v"}
+{"time":"2026-01-09T06:58:10.492703968Z","level":"INFO","msg":"writer: started","stream_id":"hcor203v"}
+{"time":"2026-01-09T06:58:10.492768534Z","level":"INFO","msg":"sender: started","stream_id":"hcor203v"}
+{"time":"2026-01-09T07:02:46.191754195Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":2126}
+{"time":"2026-01-09T07:02:46.407313544Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-01-09T07:06:16.191429904Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":4707}
+{"time":"2026-01-09T07:06:16.446787657Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-01-09T07:09:46.342638099Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":7288}
+{"time":"2026-01-09T07:09:46.356615228Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-01-09T07:18:16.476479328Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":13819}
+{"time":"2026-01-09T07:18:16.521575938Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-01-09T07:23:31.20077951Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":18125}
+{"time":"2026-01-09T07:23:31.338968911Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-01-09T07:25:28.518224073Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-01-09T07:25:28.820730804Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-01-09T07:25:28.852704878Z","level":"INFO","msg":"stream: closing","id":"hcor203v"}
+{"time":"2026-01-09T07:25:28.852744078Z","level":"INFO","msg":"handler: closed","stream_id":"hcor203v"}
+{"time":"2026-01-09T07:25:28.852884816Z","level":"INFO","msg":"sender: closed","stream_id":"hcor203v"}
+{"time":"2026-01-09T07:25:28.852910242Z","level":"INFO","msg":"stream: closed","id":"hcor203v"}

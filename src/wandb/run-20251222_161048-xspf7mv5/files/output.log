@@ -1,0 +1,26 @@
+No checkpoint found, starting training from scratch.
+first phase
+first_end_epoch:51
+d1_Epoch 1/101:   0%|          | 0/1000 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_class_SGD.py", line 270, in <module>
+    main(args.config, run_time)
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_class_SGD.py", line 171, in main
+    for batch_idx, (inputs, targets) in enumerate(tqdm.tqdm(dataloader1, desc=f'd1_Epoch {epoch}/{start_epoch+config.PRE_EPOCHS+config.POST_EPOCHS}')):
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+               ^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 732, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 788, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/torch/utils/data/_utils/fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+            ~~~~~~~~~~~~^^^^^
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/dataset.py", line 83, in __getitem__
+    label = self.label_to_index[label_str]
+            ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 1

@@ -1,0 +1,20 @@
+{"time":"2026-01-05T06:36:02.07588684Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-01-05T06:36:03.162383947Z","level":"INFO","msg":"stream: created new stream","id":"ypkjscvn"}
+{"time":"2026-01-05T06:36:03.162510696Z","level":"INFO","msg":"handler: started","stream_id":"ypkjscvn"}
+{"time":"2026-01-05T06:36:03.162730918Z","level":"INFO","msg":"stream: started","id":"ypkjscvn"}
+{"time":"2026-01-05T06:36:03.162753312Z","level":"INFO","msg":"writer: started","stream_id":"ypkjscvn"}
+{"time":"2026-01-05T06:36:03.162797271Z","level":"INFO","msg":"sender: started","stream_id":"ypkjscvn"}
+{"time":"2026-01-05T06:46:08.805877662Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":2773}
+{"time":"2026-01-05T06:46:09.004934744Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-01-05T06:52:08.922346953Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":7434}
+{"time":"2026-01-05T06:52:08.956460336Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-01-05T07:03:08.704115657Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":15561}
+{"time":"2026-01-05T07:03:08.974457699Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":15}
+{"time":"2026-01-05T07:07:53.93674606Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":19596}
+{"time":"2026-01-05T07:07:54.038712929Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-01-05T07:08:28.961304374Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-01-05T07:08:29.239140757Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-01-05T07:08:29.249511766Z","level":"INFO","msg":"stream: closing","id":"ypkjscvn"}
+{"time":"2026-01-05T07:08:29.249569371Z","level":"INFO","msg":"handler: closed","stream_id":"ypkjscvn"}
+{"time":"2026-01-05T07:08:29.249807232Z","level":"INFO","msg":"sender: closed","stream_id":"ypkjscvn"}
+{"time":"2026-01-05T07:08:29.249889137Z","level":"INFO","msg":"stream: closed","id":"ypkjscvn"}

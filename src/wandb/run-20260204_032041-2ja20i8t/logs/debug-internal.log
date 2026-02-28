@@ -1,0 +1,20 @@
+{"time":"2026-02-04T03:20:41.909043325Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-02-04T03:20:42.402934572Z","level":"INFO","msg":"stream: created new stream","id":"2ja20i8t"}
+{"time":"2026-02-04T03:20:42.403032772Z","level":"INFO","msg":"handler: started","stream_id":"2ja20i8t"}
+{"time":"2026-02-04T03:20:42.403178107Z","level":"INFO","msg":"stream: started","id":"2ja20i8t"}
+{"time":"2026-02-04T03:20:42.403211242Z","level":"INFO","msg":"writer: started","stream_id":"2ja20i8t"}
+{"time":"2026-02-04T03:20:42.403275371Z","level":"INFO","msg":"sender: started","stream_id":"2ja20i8t"}
+{"time":"2026-02-04T03:21:28.081804289Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":812}
+{"time":"2026-02-04T03:21:28.233792732Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-02-04T03:22:47.231281717Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":2275}
+{"time":"2026-02-04T03:22:47.231643133Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":9}
+{"time":"2026-02-04T03:25:58.105304665Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":5778}
+{"time":"2026-02-04T03:25:58.320338433Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-02-04T03:29:28.149122692Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":9928}
+{"time":"2026-02-04T03:29:28.263910351Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-02-04T03:33:29.818492605Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-02-04T03:33:30.083619607Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-02-04T03:33:30.091897363Z","level":"INFO","msg":"stream: closing","id":"2ja20i8t"}
+{"time":"2026-02-04T03:33:30.091923947Z","level":"INFO","msg":"handler: closed","stream_id":"2ja20i8t"}
+{"time":"2026-02-04T03:33:30.092022962Z","level":"INFO","msg":"sender: closed","stream_id":"2ja20i8t"}
+{"time":"2026-02-04T03:33:30.092039336Z","level":"INFO","msg":"stream: closed","id":"2ja20i8t"}

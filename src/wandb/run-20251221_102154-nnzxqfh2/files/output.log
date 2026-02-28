@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon_SGD.py", line 264, in <module>
+    main(args.config, run_time)
+  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_recon_SGD.py", line 131, in main
+    criterion = nn.MSELoss(reduction="mean")
+                ^^
+NameError: name 'nn' is not defined

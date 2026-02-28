@@ -1,0 +1,22 @@
+{"time":"2026-01-28T13:25:32.275904246Z","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2026-01-28T13:25:32.784621643Z","level":"INFO","msg":"stream: created new stream","id":"dq8tuswd"}
+{"time":"2026-01-28T13:25:32.784721128Z","level":"INFO","msg":"handler: started","stream_id":"dq8tuswd"}
+{"time":"2026-01-28T13:25:32.784887422Z","level":"INFO","msg":"stream: started","id":"dq8tuswd"}
+{"time":"2026-01-28T13:25:32.784972997Z","level":"INFO","msg":"writer: started","stream_id":"dq8tuswd"}
+{"time":"2026-01-28T13:25:32.785023275Z","level":"INFO","msg":"sender: started","stream_id":"dq8tuswd"}
+{"time":"2026-01-28T13:29:33.641041432Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":2959}
+{"time":"2026-01-28T13:29:33.644639201Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":8}
+{"time":"2026-01-28T13:33:03.373114261Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":5540}
+{"time":"2026-01-28T13:33:03.605867694Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-01-28T13:37:18.426971777Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":8682}
+{"time":"2026-01-28T13:37:18.6526252Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":20}
+{"time":"2026-01-28T13:44:18.545874921Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":14085}
+{"time":"2026-01-28T13:44:18.676692305Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":19}
+{"time":"2026-01-28T13:50:48.577004544Z","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":19303}
+{"time":"2026-01-28T13:50:48.6475986Z","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":18}
+{"time":"2026-01-28T13:51:08.027688286Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-01-28T13:51:08.472605507Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-01-28T13:51:08.481634993Z","level":"INFO","msg":"stream: closing","id":"dq8tuswd"}
+{"time":"2026-01-28T13:51:08.481668103Z","level":"INFO","msg":"handler: closed","stream_id":"dq8tuswd"}
+{"time":"2026-01-28T13:51:08.481840637Z","level":"INFO","msg":"sender: closed","stream_id":"dq8tuswd"}
+{"time":"2026-01-28T13:51:08.481912592Z","level":"INFO","msg":"stream: closed","id":"dq8tuswd"}
