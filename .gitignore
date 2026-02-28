@@ -11,4 +11,4 @@ __pycache__
 *.csv
 *.json
 *.yaml
-wandb
+/src/wandb
