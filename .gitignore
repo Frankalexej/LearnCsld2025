@@ -5,6 +5,7 @@
 /weights
 */wandb
 */__pycache__
+__pycache__
 *.log
 *.pt
 *.pth
