@@ -1,7 +1,0 @@
-Traceback (most recent call last):
-  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_mix_ADAM_CNN_Norm.py", line 355, in <module>
-    main(args.config, run_time)
-  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_mix_ADAM_CNN_Norm.py", line 197, in main
-    dataset2 = ThisCLDataset(
-               ^^^^^^^^^^^^^^
-TypeError: NPYDatasetCL_CNN.__init__() got an unexpected keyword argument 'global_mean'

@@ -1,7 +1,0 @@
-Traceback (most recent call last):
-  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_mix_ADAM_CNN.py", line 316, in <module>
-    main(args.config, run_time)
-  File "/mnt/storage/franklhtan/projects/LearnCsld2025/src/train_mix_ADAM_CNN.py", line 125, in main
-    pre_method = config.PRE_METHOD  # NOTE: This shall not be customized unless it is CL->CL, but just in case we will need to in the future. Currently, this function is not supported by the model IN TERMS OF LEARNING QUALITY (not in terms of run time error): the main concern is that for CNN, the AE decoder is much larger than a simple CL decoder, which means, if we first train RC then CL, it is okay, but the reverse might not work properly simply because in the reverse way, the huge decoder for RC is supposedly much harder to train than CL decoder. In addition, it is not so justifiable to do the CL->RC training in terms of L1->L2. But CL->CL, RC->RC should be working. This is also the reason why we have to include pre_method customization.
-                ^^^^^^^^^^^^^^^^^
-AttributeError: module 'config' has no attribute 'PRE_METHOD'
