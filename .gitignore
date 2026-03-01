@@ -3,8 +3,8 @@
 /observe_outputs
 /slurm_config
 /weights
-/wandb
-__pycache__
+*/wandb
+*/__pycache__
 *.log
 *.pt
 *.pth
