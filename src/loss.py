@@ -26,15 +26,17 @@ class EWC:
         else: 
             self.estimate_sample_size = estimate_sample_size
 
-    def penalty(self, new_params):
+    def penalty(self, new_model):
+        new_params = new_model.named_parameters()
         loss = torch.tensor(0.0).to(self.device)
-        for idx, weight in enumerate(self.old_params):
-            loss += (((self.old_params[weight] - new_params[idx]) ** 2) * self.fim[weight]).flatten().sum(dim=-1)
+        for name, p in new_params:
+            if name in self.fim: 
+                loss += (((self.old_params[name] - p) ** 2) * self.fim[name]).flatten().sum(dim=-1)
         return loss * self.ewc_lambda
     
     def calculate_fim(self, model, criterion, optimizer): 
         print("Calculating FIM")
-        model_to_use = deepcopy(model.state_dict()) # ensures that we don't touch the real model
+        model_to_use = deepcopy(model) # ensures that we don't touch the real model
         fim = {}
         for batch_idx, (inputs, targets) in enumerate(self.dataloader): 
             inputs = inputs.to(self.device)
@@ -48,12 +50,11 @@ class EWC:
             optimizer.zero_grad()
             loss.backward()
 
-            layer_names = list(model.state_dict().keys())
-            for p_idx, p in enumerate(model.parameters()):
-                if p.grad != None:
-                    if layer_names[p_idx] not in fim:
-                        fim[layer_names[p_idx]] = torch.zeros_like(p.grad).to(self.device)
-                        fim[layer_names[p_idx]] += p.grad ** 2
+            for name, p in model.named_parameters(): 
+                if p.grad != None: 
+                    if name not in fim: 
+                        fim[name] = torch.zeros_like(p.grad).to(self.device)
+                    fim[name] += p.grad ** 2
             
             if batch_idx >= self.estimate_sample_size - 1: 
                 break
@@ -61,4 +62,8 @@ class EWC:
         for p in fim:
             fim[p] = fim[p] / self.estimate_sample_size
         
-        return fim, model.state_dict()
+        theta_star = {
+            name: p.detach().clone()
+            for name, p in model.named_parameters()
+        }
+        return fim, theta_star

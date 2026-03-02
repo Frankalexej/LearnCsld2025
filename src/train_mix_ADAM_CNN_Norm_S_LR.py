@@ -356,6 +356,7 @@ def main(config_path, run_time=0, this_seed=0):
         )
 
         if consolidation_method == "EWC": 
+            print("EWC params loaded")
             fim, old_params = ewc.calculate_fim(model1, criterion1, optimizer1)
             ewc.fim = fim
             ewc.old_params = old_params
@@ -374,7 +375,7 @@ def main(config_path, run_time=0, this_seed=0):
                 features = model2(inputs)
                 # features = features.unsqueeze(1)  # Add view dimension if needed
                 if consolidation_method == "EWC": 
-                    loss = criterion2(features, targets) + ewc.penalty(model2.state_dict())
+                    loss = criterion2(features, targets) + ewc.penalty(model2)
                 else: 
                     loss = criterion2(features, targets)
 
