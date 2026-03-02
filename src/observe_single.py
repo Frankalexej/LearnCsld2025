@@ -12,6 +12,8 @@ import os
 from sklearn.metrics import silhouette_score
 from itertools import combinations
 
+from sklearn.preprocessing import normalize
+
 import importlib.util
 import argparse
 
@@ -131,6 +133,7 @@ if __name__ == '__main__':
                                         "vowel": vowel,
                                         "sil_type": f"{c1}_{c1}",
                                         "sil_score": np.nan,
+                                        "sil_score_cos": np.nan,
                                         "training": diff_trained, 
                                         "cate_num": 2,
                                         "n_sample": 0
@@ -149,12 +152,14 @@ if __name__ == '__main__':
 
                                 # D_sub = D_v[np.ix_(sub_idx, sub_idx)]
                                 score = silhouette_score(vec_sub, labels_sub)
+                                cos_score = silhouette_score(normalize(vec_sub), labels_sub, metric="cosine")
                                 # score = silhouette_score(D_sub, labels_sub, metric="precomputed")
 
                                 sil_results.append({
                                     "vowel": vowel,
                                     "sil_type": f"{c1}_{c1}",
                                     "sil_score": score,
+                                    "sil_score_cos": cos_score, 
                                     "training": diff_trained, 
                                     "cate_num": 2,
                                     "n_sample": 2 * k
@@ -171,6 +176,7 @@ if __name__ == '__main__':
                                         "vowel": vowel,
                                         "sil_type": f"{c1}_{c2}",
                                         "sil_score": np.nan,
+                                        "sil_score_cos": np.nan,
                                         "training": diff_trained, 
                                         "cate_num": 2,
                                         "n_sample": 0
@@ -193,12 +199,14 @@ if __name__ == '__main__':
                                 else:
                                     # D_sub = D_v[np.ix_(sub_idx, sub_idx)]
                                     score = silhouette_score(vec_sub, labels_sub)
+                                    cos_score = silhouette_score(normalize(vec_sub), labels_sub, metric="cosine")
                                     # score = silhouette_score(D_sub, labels_sub, metric="precomputed")
 
                                 sil_results.append({
                                     "vowel": vowel,
                                     "sil_type": f"{c1}_{c2}",
                                     "sil_score": score,
+                                    "sil_score_cos": cos_score, 
                                     "training": diff_trained, 
                                     "cate_num": 2,
                                     "n_sample": 2 * k
