@@ -14,6 +14,7 @@ import numpy as np
 import pandas as pd
 import sys
 from utils_seed import *
+from loss import *
 
 """
 Mix: we can manipulate L1 and L2 learning mechanisms. Simply configure in the config file. 
@@ -167,6 +168,7 @@ def main(config_path, run_time=0, this_seed=0):
     L2_consonant_select = config.L2_CONSONANT_SELECT  # e.g., ['sh','ch'] or ['s','ts'] or ['z', 'j']
 
     freeze_for_L2 = config.FREEZE_FOR_L2  # whether to freeze encoder when training L2 (only designated layers)
+    consolidation_method = config.CONSOLIDATION_METHOD  # currently either EWC or no consolidation (freezing is controlled separately)
 
     l1_lr = config.LR
     l2_lr = config.L2_LR
@@ -240,6 +242,18 @@ def main(config_path, run_time=0, this_seed=0):
     dataloader2 = make_loader(dataset2, batch_size=config.BATCH_SIZE, shuffle=True, seed=this_seed)
     testloader1 = make_loader(testset1, batch_size=config.BATCH_SIZE, shuffle=False, seed=this_seed+1)
     testloader2 = make_loader(testset2, batch_size=config.BATCH_SIZE, shuffle=False, seed=this_seed+1)
+
+    # here we deal with EWC settings
+    if consolidation_method == "EWC": 
+        print("EWC activated")
+        fimloader = make_loader(dataset1, batch_size=config.BATCH_SIZE, shuffle=True, seed=this_seed)   # only have dataset1, because fim is calculated based on L1 learning results
+        ewc = EWC(
+            dataloader=fimloader, 
+            ewc_lambda=config.CONSOLIDATION_STRENGTH, 
+            estimate_sample_size=None, 
+            device=config.DEVICE
+            )
+        
     # In this way, we can designate the training methods of L1 and L2. 
 
     # Initialize model, loss, optimizer
@@ -341,6 +355,11 @@ def main(config_path, run_time=0, this_seed=0):
             lr=l2_lr,
         )
 
+        if consolidation_method == "EWC": 
+            fim, old_params = ewc.calculate_fim(model1, criterion1, optimizer1)
+            ewc.fim = fim
+            ewc.old_params = old_params
+
     second_start_epoch = max(start_epoch,first_end_epoch)
     if second_start_epoch < start_epoch+config.PRE_EPOCHS+config.POST_EPOCHS:
         print("second phase:")
@@ -354,7 +373,10 @@ def main(config_path, run_time=0, this_seed=0):
 
                 features = model2(inputs)
                 # features = features.unsqueeze(1)  # Add view dimension if needed
-                loss = criterion2(features, targets)
+                if consolidation_method == "EWC": 
+                    loss = criterion2(features, targets) + ewc.penalty(model2.state_dict())
+                else: 
+                    loss = criterion2(features, targets)
 
                 optimizer2.zero_grad()
                 loss.backward()
