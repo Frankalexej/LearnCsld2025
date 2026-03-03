@@ -6,7 +6,7 @@ BATCH_SIZE = 32
 PRE_EPOCHS = 100
 POST_EPOCHS = 200
 LR = 1e-4
-L2_LR = 1e-4
+L2_LR = 1e-5
 
 CSV_PATH = '/mnt/storage/ldl_linguistics/PhonGen2025/data_251011/data_train_phase1/metadata_train_phase1.csv'
 CSV_PATH2 = '/mnt/storage/ldl_linguistics/PhonGen2025/data_251011/data_train_phase2_a/metadata_train_phase2_a.csv'
@@ -31,7 +31,7 @@ BASE_SEED = 20260214          # shared across the entire project
 DETERMINISTIC = False         # True only if you need strict determinism
 
 SIMILARITY = "euclidean"
-RUN_NAME = '0214_RCRC_PARA_EWC_1e4'
+RUN_NAME = '0214_RCRC_PARA_EWC_1e5'
 RUN_TIMES_START = 1
 RUN_TIMES_END = RUN_TIMES_START+6
 SAMPLE_LIST = ['/mnt/storage/ldl_linguistics/PhonGen2025/data_251011/data_train_phase1/aca/aca_0001.npy',

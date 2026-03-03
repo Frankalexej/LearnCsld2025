@@ -367,6 +367,7 @@ def main(config_path, run_time=0, this_seed=0):
         print(f"second_start_epoch:{second_start_epoch}")
         for epoch in range(second_start_epoch, start_epoch+config.PRE_EPOCHS+config.POST_EPOCHS):
             epoch_loss = 0.0
+            ewc_penalty = 0.0   # added to ensure EWC is working
             model2.train()
             for batch_idx, (inputs, targets) in enumerate(tqdm.tqdm(dataloader2, desc=f'd2_Epoch {epoch}/{start_epoch+config.PRE_EPOCHS+config.POST_EPOCHS}')):
                 inputs = inputs.to(config.DEVICE)
@@ -375,7 +376,9 @@ def main(config_path, run_time=0, this_seed=0):
                 features = model2(inputs)
                 # features = features.unsqueeze(1)  # Add view dimension if needed
                 if consolidation_method == "EWC": 
-                    loss = criterion2(features, targets) + ewc.penalty(model2)
+                    penalty = ewc.penalty(model2)
+                    ewc_penalty += penalty.item()
+                    loss = criterion2(features, targets) + penalty
                 else: 
                     loss = criterion2(features, targets)
 
@@ -389,8 +392,9 @@ def main(config_path, run_time=0, this_seed=0):
                 #wandb.log({"batch_loss": loss.item(), "epoch": epoch})
             # avg_loss = epoch_loss / (len(dataloader1)+len(dataloader2))
             avg_loss = epoch_loss / (len(dataloader2))
-            print(f"Epoch {epoch} Loss: {avg_loss:.4f}")
-            wandb.log({"train_loss": avg_loss, "epoch": epoch})
+            avg_ewc_penalty = ewc_penalty / (len(dataloader2))
+            print(f"Epoch {epoch} Loss: {avg_loss:.4f}, EWC Penalty: {avg_ewc_penalty:.4f}")
+            wandb.log({"train_loss": avg_loss, "epoch": epoch, "ewc_penalty": avg_ewc_penalty})
             test_loss = evaluate(model2, testloader2, criterion2, config.DEVICE)
             wandb.log({"test_loss": test_loss, "epoch": epoch})
             
