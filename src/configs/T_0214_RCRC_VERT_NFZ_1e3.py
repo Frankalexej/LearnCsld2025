@@ -31,7 +31,7 @@ BASE_SEED = 20260214          # shared across the entire project
 DETERMINISTIC = False         # True only if you need strict determinism
 
 SIMILARITY = "euclidean"
-RUN_NAME = '0214_RCRC_VERT_NFZ_1e4'
+RUN_NAME = '0214_RCRC_VERT_NFZ_1e3'
 RUN_TIMES_START = 1
 RUN_TIMES_END = RUN_TIMES_START+6
 SAMPLE_LIST = ['/mnt/storage/ldl_linguistics/PhonGen2025/data_251011/data_train_phase1/aca/aca_0001.npy',

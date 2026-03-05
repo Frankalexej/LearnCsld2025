@@ -23,6 +23,8 @@ POST_METHOD = "RC"
 L1_CONSONANT_SELECT = ['s', 'c']  # L1: s vs c
 L2_CONSONANT_SELECT = ['tsh', 'sh']  # L2: sh vs ch
 FREEZE_FOR_L2 = False            # whether to freeze the L1 encoder when training on L2
+CONSOLIDATION_METHOD = "NA"
+CONSOLIDATION_STRENGTH = 0.0
 
 # Seed control
 BASE_SEED = 20260214          # shared across the entire project
