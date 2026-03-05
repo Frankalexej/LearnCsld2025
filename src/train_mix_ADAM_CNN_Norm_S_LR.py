@@ -288,11 +288,11 @@ def main(config_path, run_time=0, this_seed=0):
         print("No checkpoint found, starting training from scratch.")
         last_epoch = 0 
          #test the sample before the training
-        sample_test_wrapper(sample_list,model1,config.DEVICE,similarity_config,0, global_mean=global_mean)   
+        # sample_test_wrapper(sample_list,model1,config.DEVICE,similarity_config,0, global_mean=global_mean)   
 
     start_epoch = last_epoch + 1
     first_end_epoch = min(config.PRE_EPOCHS+1, start_epoch+config.PRE_EPOCHS+config.POST_EPOCHS)
-    if start_epoch <= config.PRE_EPOCHS :
+    if start_epoch <= config.PRE_EPOCHS:
         print("first phase")
         print(f"first_end_epoch:{first_end_epoch}")
         for epoch in range(start_epoch, first_end_epoch):
@@ -330,7 +330,7 @@ def main(config_path, run_time=0, this_seed=0):
                 torch.save(model1.state_dict(), checkpoint_path_epoch)
             
             #test some samples
-            sample_test_wrapper(sample_list,model1,config.DEVICE,similarity_config,epoch+1, global_mean=global_mean)
+            # sample_test_wrapper(sample_list,model1,config.DEVICE,similarity_config,epoch+1, global_mean=global_mean)
     
     if start_epoch <= config.PRE_EPOCHS + 1: # +1 allows the case of stopping between after 100 and before 110
         # NOTE: here we transfer the model. For good formatting, we will transfer regardless of whether pre and post shares learning method. 
@@ -408,7 +408,7 @@ def main(config_path, run_time=0, this_seed=0):
                 torch.save(model2.state_dict(), checkpoint_path_epoch)
             
             #test some samples
-            sample_test_wrapper(sample_list,model2,config.DEVICE,similarity_config,epoch+1, global_mean=global_mean)
+            # sample_test_wrapper(sample_list,model2,config.DEVICE,similarity_config,epoch+1, global_mean=global_mean)
     wandb.finish()
 
 if __name__ == '__main__':
