@@ -32,8 +32,8 @@ DETERMINISTIC = False         # True only if you need strict determinism
 
 SIMILARITY = "euclidean"
 RUN_NAME = '0214_RCRC_VERT_NFZ_1e3'
-RUN_TIMES_START = 1
-RUN_TIMES_END = RUN_TIMES_START+6
+RUN_TIMES_START = 7
+RUN_TIMES_END = RUN_TIMES_START+3
 SAMPLE_LIST = ['/mnt/storage/ldl_linguistics/PhonGen2025/data_251011/data_train_phase1/aca/aca_0001.npy',
                 '/mnt/storage/ldl_linguistics/PhonGen2025/data_251011/data_train_phase1/asa/asa_0001.npy',
 
