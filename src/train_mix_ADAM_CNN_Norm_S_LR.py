@@ -15,6 +15,7 @@ import pandas as pd
 import sys
 from utils_seed import *
 from loss import *
+from copy import deepcopy
 
 """
 Mix: we can manipulate L1 and L2 learning mechanisms. Simply configure in the config file. 
@@ -246,11 +247,11 @@ def main(config_path, run_time=0, this_seed=0):
     # here we deal with EWC settings
     if consolidation_method == "EWC": 
         print("EWC activated")
-        fimloader = make_loader(dataset1, batch_size=config.BATCH_SIZE, shuffle=True, seed=this_seed)   # only have dataset1, because fim is calculated based on L1 learning results
+        fimloader = make_loader(dataset1, batch_size=1, shuffle=True, seed=this_seed)   # only have dataset1, because fim is calculated based on L1 learning results. Using 1-sample batch to calculate fim, because we want the fim to be calculated on the sample level, which is more accurate. 
         ewc = EWC(
             dataloader=fimloader, 
             ewc_lambda=config.CONSOLIDATION_STRENGTH, 
-            estimate_sample_size=None, 
+            estimate_num_batches=None, 
             device=config.DEVICE
             )
         
@@ -357,9 +358,17 @@ def main(config_path, run_time=0, this_seed=0):
 
         if consolidation_method == "EWC": 
             print("EWC params loaded")
-            fim, old_params = ewc.calculate_fim(model1, criterion1, optimizer1)
-            ewc.fim = fim
-            ewc.old_params = old_params
+            ewc.calculate_fim(deepcopy(model1), criterion1)
+
+            # Log the keys of FIM and the keys of model2 to check if they match, which is important for EWC to work. 
+            fim_keys = set(ewc.fim.keys())
+            model2_keys = {name for name, _ in model2.named_parameters()}
+            common_keys = fim_keys & model2_keys
+
+            print("FIM params:", len(fim_keys))
+            print("Model2 params:", len(model2_keys))
+            print("Common params:", len(common_keys))
+            print("Example common keys:", list(sorted(common_keys))[:10])
 
     second_start_epoch = max(start_epoch,first_end_epoch)
     if second_start_epoch < start_epoch+config.PRE_EPOCHS+config.POST_EPOCHS:
@@ -367,6 +376,7 @@ def main(config_path, run_time=0, this_seed=0):
         print(f"second_start_epoch:{second_start_epoch}")
         for epoch in range(second_start_epoch, start_epoch+config.PRE_EPOCHS+config.POST_EPOCHS):
             epoch_loss = 0.0
+            task_loss_total = 0.0
             ewc_penalty = 0.0   # added to ensure EWC is working
             model2.train()
             for batch_idx, (inputs, targets) in enumerate(tqdm.tqdm(dataloader2, desc=f'd2_Epoch {epoch}/{start_epoch+config.PRE_EPOCHS+config.POST_EPOCHS}')):
@@ -376,9 +386,13 @@ def main(config_path, run_time=0, this_seed=0):
                 features = model2(inputs)
                 # features = features.unsqueeze(1)  # Add view dimension if needed
                 if consolidation_method == "EWC": 
+                    task_loss = criterion2(features, targets)
                     penalty = ewc.penalty(model2)
+                    
+                    loss = task_loss + penalty
+
+                    task_loss_total += task_loss.item()
                     ewc_penalty += penalty.item()
-                    loss = criterion2(features, targets) + penalty
                 else: 
                     loss = criterion2(features, targets)
 
@@ -392,9 +406,10 @@ def main(config_path, run_time=0, this_seed=0):
                 #wandb.log({"batch_loss": loss.item(), "epoch": epoch})
             # avg_loss = epoch_loss / (len(dataloader1)+len(dataloader2))
             avg_loss = epoch_loss / (len(dataloader2))
+            avg_task_loss = task_loss_total / (len(dataloader2))
             avg_ewc_penalty = ewc_penalty / (len(dataloader2))
-            print(f"Epoch {epoch} Loss: {avg_loss:.4f}, EWC Penalty: {avg_ewc_penalty:.4f}")
-            wandb.log({"train_loss": avg_loss, "epoch": epoch, "ewc_penalty": avg_ewc_penalty})
+            print(f"Epoch {epoch} Loss: {avg_loss:.4f}, Task Loss: {avg_task_loss:.4f}, EWC Penalty: {avg_ewc_penalty:.4f}")
+            wandb.log({"train_loss": avg_loss, "epoch": epoch, "task_loss": avg_task_loss, "ewc_penalty": avg_ewc_penalty})
             test_loss = evaluate(model2, testloader2, criterion2, config.DEVICE)
             wandb.log({"test_loss": test_loss, "epoch": epoch})
             
