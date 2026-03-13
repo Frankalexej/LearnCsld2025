@@ -37,7 +37,6 @@ class EWC:
         loss = torch.tensor(0.0).to(self.device)
         for name, p in new_params:
             if name in self.fim: 
-                print(((self.old_params[name] - p) ** 2) * self.fim[name])
                 loss += (((self.old_params[name] - p) ** 2) * self.fim[name]).flatten().sum()
         return loss * self.ewc_lambda
     

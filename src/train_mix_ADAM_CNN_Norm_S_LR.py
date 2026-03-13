@@ -408,7 +408,7 @@ def main(config_path, run_time=0, this_seed=0):
             avg_loss = epoch_loss / (len(dataloader2))
             avg_task_loss = task_loss_total / (len(dataloader2))
             avg_ewc_penalty = ewc_penalty / (len(dataloader2))
-            print(f"Epoch {epoch} Loss: {avg_loss:.4f}, Task Loss: {avg_task_loss:.4f}, EWC Penalty: {avg_ewc_penalty:.4f}")
+            print(f"Epoch {epoch} Loss: {avg_loss:.4f}, Task Loss: {avg_task_loss:.10f}, EWC Penalty: {avg_ewc_penalty:.10f}")
             wandb.log({"train_loss": avg_loss, "epoch": epoch, "task_loss": avg_task_loss, "ewc_penalty": avg_ewc_penalty})
             test_loss = evaluate(model2, testloader2, criterion2, config.DEVICE)
             wandb.log({"test_loss": test_loss, "epoch": epoch})
