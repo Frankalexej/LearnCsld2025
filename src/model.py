@@ -305,3 +305,14 @@ class LinearFCClass(LinearFC):
             p.requires_grad = not freeze_encoder
         for p in self.decoder.parameters():
             p.requires_grad = not freeze_decoder
+
+
+class LinearFCEncode(LinearFC):
+    def __init__(self, in_features, hid_features, out_features):
+        super().__init__()
+        self.encoder = nn.Linear(in_features, hid_features)
+
+    def forward(self, x):
+        x = x.reshape(x.size(0), -1)
+        hid = self.encoder(x)
+        return hid
