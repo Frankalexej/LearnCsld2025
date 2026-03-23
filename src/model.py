@@ -283,6 +283,9 @@ class LinearFCRecon(LinearFC):
             p.requires_grad = not freeze_encoder
         for p in self.decoder.parameters():
             p.requires_grad = not freeze_decoder
+
+    def encoder_names(self): 
+        return ("encoder.")
     
 class LinearFCClass(LinearFC):
     def __init__(self, in_features, hid_features, out_features):
@@ -305,6 +308,9 @@ class LinearFCClass(LinearFC):
             p.requires_grad = not freeze_encoder
         for p in self.decoder.parameters():
             p.requires_grad = not freeze_decoder
+
+    def encoder_names(self): 
+        return ("encoder.")
 
 
 class LinearFCEncode(LinearFC):

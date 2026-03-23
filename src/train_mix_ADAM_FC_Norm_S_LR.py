@@ -347,9 +347,14 @@ def main(config_path, run_time=0, this_seed=0):
         # NOTE: THIS IS AN ASSUMPTION, CHECK AFTER RUNNING: here we supposedly only load the encoder part, REGARDLESS of whether or not pre and post share model structure. This is to be fair to the case where they do not share model structure, so that training on L2 does not give advantage to not changing model structure. 
         state = model1.state_dict()
         # NOTE: since we are not anymore using RC->CL, or CL->RC, there is no need to only load encoder. In fact, it is more justifiable to load both encoder and decoder. 
-        # encoder_prefixes = ("layer1.", "layer2.", "layer3.", "fc.")
-        # enc_state = {k: v for k, v in state.items() if k.startswith(encoder_prefixes)}
-        model2.load_state_dict(state, strict=False)  # strict=False: otherwise it will check whether the whole target model is matched. 
+        # NOTE (20260323): We still additionally allowed RC -> CL by writing this part into the model. I think if we use a different task, we need to use a new decoder head. Even though the structure is the same, logically it is not reasonable to use old reconstruction head to do classification. 
+        if pre_method != post_method: 
+            print(f"{pre_method} -> {post_method}. Loading Encoder Only. ")
+            encoder_names = model1.encoder_names()
+            enc_state = {k: v for k, v in state.items() if k.startswith(encoder_names)}
+            model2.load_state_dict(enc_state, strict=False)
+        else: 
+            model2.load_state_dict(state, strict=False)  # strict=False: otherwise it will check whether the whole target model is matched. 
         print("Model 1 encoder loaded to Model 2. ")
 
         if freeze_for_L2: 
