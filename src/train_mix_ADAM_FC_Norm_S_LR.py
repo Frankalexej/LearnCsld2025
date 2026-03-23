@@ -400,8 +400,6 @@ def main(config_path, run_time=0, this_seed=0):
                 targets = targets.to(config.DEVICE)
 
                 features = model2(inputs)
-
-                print(targets)
                 # features = features.unsqueeze(1)  # Add view dimension if needed
                 if consolidation_method == "EWC": 
                     task_loss = criterion2(features, targets)
