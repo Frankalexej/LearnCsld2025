@@ -151,7 +151,8 @@ class NPYDatasetCL_CNN_Norm(Dataset):
         self.df = df
         self.global_mean = global_mean
 
-        unique_labels = ["asa", "aca", "atsa", "atca", "asha", "acha", "atsha", "atcha"]
+        # unique_labels = ["asa", "aca", "atsa", "atca", "asha", "acha", "atsha", "atcha"]
+        unique_labels = consonant_select
         self.label_to_index = {lab: i for i, lab in enumerate(unique_labels)}
         self.index_to_label = {i: lab for lab, i in self.label_to_index.items()}
 
@@ -172,7 +173,7 @@ class NPYDatasetCL_CNN_Norm(Dataset):
         # Now instead of using VCV, for testing, I will use only the C. 
         # data_tensor = data_tensor    # Just take the second element. 
 
-        label_str = row['word']
+        label_str = row['consonant']
         label = self.label_to_index[label_str]
         return data_tensor, label
 

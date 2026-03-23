@@ -9,7 +9,7 @@ LR = 1e-3
 L2_LR = 1e-3
 
 CSV_PATH = '/mnt/storage/ldl_linguistics/PhonGen2025/data_251011/data_train_phase1/metadata_train_phase1.csv'
-CSV_PATH2 = '/mnt/storage/ldl_linguistics/PhonGen2025/data_251011/data_train_phase2_a/metadata_train_phase2_a.csv'
+CSV_PATH2 = '/mnt/storage/franklhtan/projects/LearnCsld2025/data/data_train_phase2_a/data_train_phase2_a.csv'
 CSV_PATH3 = '/mnt/storage/ldl_linguistics/PhonGen2025/data_251011/data_test_a/metadata_test_a.csv'
 CSV_PATH4 = '/mnt/storage/franklhtan/projects/LearnCsld2025/data/data_test_1/metadata_test_1.csv'  # NEW 20260203, I just suddenly found that we didn't have testing on L1. 
 

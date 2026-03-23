@@ -401,16 +401,11 @@ def main(config_path, run_time=0, this_seed=0):
 
                 features = model2(inputs)
 
-                print(features.shape)
-                print(targets.shape)
-                print(targets.dtype)
-                print(targets.min().item(), targets.max().item())
+                print(targets)
                 # features = features.unsqueeze(1)  # Add view dimension if needed
                 if consolidation_method == "EWC": 
                     task_loss = criterion2(features, targets)
-                    print("TASK LOSS CALCULATED. ")
                     penalty = ewc.penalty(model2)
-                    print("EWC PENALTY CALCULATED. ")
                     
                     loss = task_loss + penalty
 
