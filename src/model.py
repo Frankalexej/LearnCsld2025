@@ -291,12 +291,12 @@ class LinearFCClass(LinearFC):
     def __init__(self, in_features, hid_features, out_features):
         super().__init__()
         self.encoder = nn.Linear(in_features, hid_features)
-        self.decoder = nn.Linear(hid_features, out_features)
+        self.predictor = nn.Linear(hid_features, out_features)
 
     def forward(self, x):
         x = x.reshape(x.size(0), -1)
         hid = self.encoder(x)
-        out = self.decoder(hid)
+        out = self.predictor(hid)
         return out
 
     def encode(self, x):
