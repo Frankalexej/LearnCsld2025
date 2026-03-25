@@ -130,11 +130,11 @@ def main(config_path, run_time=0, this_seed=0):
     sample_list = config.SAMPLE_LIST
 
     # Initialize wandb
-    wandb.init(
-        project="LearnCsld2025",
-        name=config.RUN_NAME + f"_{run_time}",
-        reinit=True  # allow reinitializing within the same process
-    )
+    # wandb.init(
+    #     project="LearnCsld2025",
+    #     name=config.RUN_NAME + f"_{run_time}",
+    #     reinit=True  # allow reinitializing within the same process
+    # )
 
     # Here we collect the global means, this collection ensures that both L1 and L2 share the same normalization statistics. 
     df1 = pd.read_csv(config.CSV_PATH)
@@ -317,9 +317,9 @@ def main(config_path, run_time=0, this_seed=0):
                 #wandb.log({"batch_loss": loss.item(), "epoch": epoch})
             avg_loss = epoch_loss / (len(dataloader1))
             print(f"Epoch {epoch} Loss: {avg_loss:.4f}")
-            wandb.log({"train_loss": avg_loss, "epoch": epoch})
+            # wandb.log({"train_loss": avg_loss, "epoch": epoch})
             test_loss = evaluate(model1, testloader1, criterion1, config.DEVICE)
-            wandb.log({"test_loss": test_loss, "epoch": epoch})
+            # wandb.log({"test_loss": test_loss, "epoch": epoch})
             
             # Save the latest checkpoint, overwriting the previous one
             checkpoint_path_latest = os.path.join(save_dir, 'checkpoint_latest.pt')
@@ -409,9 +409,9 @@ def main(config_path, run_time=0, this_seed=0):
             avg_task_loss = task_loss_total / (len(dataloader2))
             avg_ewc_penalty = ewc_penalty / (len(dataloader2))
             print(f"Epoch {epoch} Loss: {avg_loss:.4f}, Task Loss: {avg_task_loss:.10f}, EWC Penalty: {avg_ewc_penalty:.10f}")
-            wandb.log({"train_loss": avg_loss, "epoch": epoch, "task_loss": avg_task_loss, "ewc_penalty": avg_ewc_penalty})
+            # wandb.log({"train_loss": avg_loss, "epoch": epoch, "task_loss": avg_task_loss, "ewc_penalty": avg_ewc_penalty})
             test_loss = evaluate(model2, testloader2, criterion2, config.DEVICE)
-            wandb.log({"test_loss": test_loss, "epoch": epoch})
+            # wandb.log({"test_loss": test_loss, "epoch": epoch})
             
             # Save the latest checkpoint, overwriting the previous one
             checkpoint_path_latest = os.path.join(save_dir, 'checkpoint_latest.pt')
@@ -424,7 +424,7 @@ def main(config_path, run_time=0, this_seed=0):
             
             #test some samples
             # sample_test_wrapper(sample_list,model2,config.DEVICE,similarity_config,epoch+1, global_mean=global_mean)
-    wandb.finish()
+    # wandb.finish()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Training script with config path')
