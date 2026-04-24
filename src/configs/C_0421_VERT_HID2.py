@@ -22,6 +22,6 @@ BASE_SEED = 20260421          # shared across the entire project
 DETERMINISTIC = False         # True only if you need strict determinism
 
 SIMILARITY = "euclidean"
-RUN_NAMES = ['0421_RCRC_VERT_EWCp0_1e3_HID2', '0421_RCRC_VERT_EWCp3_1e3_HID2']
+RUN_NAMES = ['0421_RCRC_VERT_EWCp2_1e4_HID2', '0421_RCRC_VERT_EWCn1_1e4_HID2']
 RUN_TIMES_START = 1
 RUN_TIMES_END = RUN_TIMES_START+10
