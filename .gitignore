@@ -1,4 +1,4 @@
-/data
+/data*
 /eval_outputs
 /observe_outputs
 /slurm_config

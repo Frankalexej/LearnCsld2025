@@ -219,7 +219,6 @@ class NPYDatasetRC_CNN(Dataset):
         label_str = row['word']
         label = self.label_to_index[label_str]
         return data_tensor, data_tensor
-    
 
 class NPYDatasetRC_CNN_Norm(Dataset):
     """CNN version simply adds a channel dimension. """
@@ -262,6 +261,99 @@ class NPYDatasetRC_CNN_Norm(Dataset):
         # data_tensor = data_tensor    # Just take the second element. 
 
         label_str = row['word']
+        label = self.label_to_index[label_str]
+        return data_tensor, data_tensor
+    
+
+class NPYDatasetCL_AMP(Dataset):
+    """CNN version simply adds a channel dimension. """
+    def __init__(self, csv_path, global_mean=1.0, manipulant_select=None):
+        """
+        Args:
+            csv_path (str): Path to the CSV metadata file.
+            base_path (str): Base directory where .npy files are stored.
+            max_samples (int): Maximum number of samples to load.
+            train_only (bool): If True, load only training data; else test data.
+
+            NOTE: currently normalization is not implemented
+        """
+        # Load CSV
+        df = pd.read_csv(csv_path)
+        # NOTE: new feture 20260203 to select only specific consonant data.
+        if manipulant_select is not None:
+            df = df[df['vowel'].isin(manipulant_select)].reset_index(drop=True)
+
+        # Store DataFrame
+        self.df = df
+        self.global_mean = global_mean
+
+        # unique_labels = ["asa", "aca", "atsa", "atca", "asha", "acha", "atsha", "atcha"]
+        unique_labels = manipulant_select
+        self.label_to_index = {lab: i for i, lab in enumerate(unique_labels)}
+        self.index_to_label = {i: lab for lab, i in self.label_to_index.items()}
+
+    def __len__(self):
+        return len(self.df)
+
+    def __getitem__(self, idx):
+        row = self.df.iloc[idx]
+        data = np.load(row['path'])  # shape: (3, 17)
+
+        # Convert numpy array to tensor
+        data_tensor = torch.tensor(data, dtype=torch.float32)
+
+        # Reshape as needed: flatten and add channel dimension
+        data_tensor = data_tensor.reshape(-1)  # flatten to 1D NOTE: currently we borrow the VCV structure, anyway only C is changing. 
+        # data_tensor = data_tensor / self.global_mean  # normalize by dataset global mean
+        data_tensor = data_tensor.unsqueeze(0)  # add channel dimension (1, N)
+        # Now instead of using VCV, for testing, I will use only the C. 
+        # data_tensor = data_tensor    # Just take the second element. 
+
+        label_str = row['vowel']
+        label = self.label_to_index[label_str]
+        return data_tensor, label
+
+class NPYDatasetRC_AMP(Dataset):
+    """CNN version simply adds a channel dimension. """
+    def __init__(self, csv_path, global_mean=1.0, manipulant_select=None):
+        """
+        Args:
+            csv_path (str): Path to the CSV metadata file.
+            base_path (str): Base directory where .npy files are stored.
+            max_samples (int): Maximum number of samples to load.
+            train_only (bool): If True, load only training data; else test data.
+        """
+        # Load CSV
+        df = pd.read_csv(csv_path)
+        # NOTE: new feture 20260203 to select only specific consonant data.
+        if manipulant_select is not None:
+            df = df[df['vowel'].isin(manipulant_select)].reset_index(drop=True)
+        # Store DataFrame
+        self.df = df
+        self.global_mean = global_mean
+        unique_labels = ["sis", "sus", "sihs", "suhs"]
+        self.label_to_index = {lab: i for i, lab in enumerate(unique_labels)}
+        self.index_to_label = {i: lab for lab, i in self.label_to_index.items()}
+
+    def __len__(self):
+        return len(self.df)
+
+    def __getitem__(self, idx):
+        row = self.df.iloc[idx]
+        data = np.load(row['path'])  # shape: (3, 17)
+
+        # Convert numpy array to tensor
+        data_tensor = torch.tensor(data, dtype=torch.float32)
+
+        # Reshape as needed: flatten and add channel dimension
+        data_tensor = data_tensor.reshape(-1)  # flatten to 1D NOTE: currently we borrow the VCV structure, anyway only C is changing. 
+        # data_tensor = data_tensor / self.global_mean  # normalize by dataset global mean
+
+        data_tensor = data_tensor.unsqueeze(0)  # add channel dimension (1, N)
+        # Now instead of using VCV, for testing, I will use only the C. 
+        # data_tensor = data_tensor    # Just take the second element. 
+
+        label_str = row['vowel']
         label = self.label_to_index[label_str]
         return data_tensor, data_tensor
     
