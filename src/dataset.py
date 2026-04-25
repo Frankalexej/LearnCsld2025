@@ -331,7 +331,10 @@ class NPYDatasetRC_AMP(Dataset):
         # Store DataFrame
         self.df = df
         self.global_mean = global_mean
-        unique_labels = ["sis", "sus", "sihs", "suhs"]
+        # unique_labels = ["sis", "sus", "sihs", "suhs"]
+        # self.label_to_index = {lab: i for i, lab in enumerate(unique_labels)}
+        # self.index_to_label = {i: lab for lab, i in self.label_to_index.items()}
+        unique_labels = manipulant_select
         self.label_to_index = {lab: i for i, lab in enumerate(unique_labels)}
         self.index_to_label = {i: lab for lab, i in self.label_to_index.items()}
 
