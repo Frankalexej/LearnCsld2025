@@ -7,7 +7,7 @@ import torch.optim as optim
 import tqdm
 from model import LinearFCEncode as ThisEncoder
 from torch.utils.data import DataLoader
-from dataset import NPYDatasetInfoCollect
+from dataset import NPYDatasetInfoCollect_AMP as CollectDataset
 import numpy as np
 import sys
 
@@ -129,43 +129,44 @@ def main(config_path, run_name=None, run_time=0):
     eval_save_dir_hyper = os.path.join(config.WRITE_BASE_PATH, 'eval_outputs', config.RUN_NAME, f'{run_time}')
     os.makedirs(eval_save_dir_hyper, exist_ok=True)
 
-    # Here we collect the global means, this collection ensures that both L1 and L2 share the same normalization statistics. 
-    df1 = pd.read_csv(config.CSV_PATH)  # This should always be the training L1
-    df2 = pd.read_csv(config.CSV_PATH2) # This should always be the training L2
-    eps = 1e-9
-    df = pd.concat([df1, df2], ignore_index=True)
-    # get the by dimension mean of dataset, in normal scale, use numpy for easier calculation
-    data_sum = None
-    count = 0
+    # # Here we collect the global means, this collection ensures that both L1 and L2 share the same normalization statistics. 
+    # df1 = pd.read_csv(config.CSV_PATH)  # This should always be the training L1
+    # df2 = pd.read_csv(config.CSV_PATH2) # This should always be the training L2
+    # eps = 1e-9
+    # df = pd.concat([df1, df2], ignore_index=True)
+    # # get the by dimension mean of dataset, in normal scale, use numpy for easier calculation
+    # data_sum = None
+    # count = 0
 
-    for _, row in df.iterrows():
-        x = np.load(row['path'])          # (3, 17)
-        x = x.reshape(-1)                 # (51,)
-        x = x + eps                    # avoid dividing by 0
+    # for _, row in df.iterrows():
+    #     x = np.load(row['path'])          # (3, 17)
+    #     x = x.reshape(-1)                 # (51,)
+    #     x = x + eps                    # avoid dividing by 0
 
-        if data_sum is None:
-            data_sum = x.copy()
-        else:
-            data_sum += x
-        count += 1
+    #     if data_sum is None:
+    #         data_sum = x.copy()
+    #     else:
+    #         data_sum += x
+    #     count += 1
 
-    global_mean = torch.tensor(
-        data_sum / count, dtype=torch.float32
-    )
+    # global_mean = torch.tensor(
+    #     data_sum / count, dtype=torch.float32
+    # )
+    global_mean = 1.0
 
-    L1_consonant_select = config.L1_CONSONANT_SELECT  # e.g., ['s','c']
-    L2_consonant_select = config.L2_CONSONANT_SELECT  # e.g., ['sh','ch'] or ['s','ts'] or ['z', 'j']
+    L1_manipulant_select = config.L1_MANIPULANT_SELECT  # e.g., ['s','c']
+    L2_manipulant_select = config.L2_MANIPULANT_SELECT  # e.g., ['sh','ch'] or ['s','ts'] or ['z', 'j']
 
     # Load dataset
-    dataset_L1 = NPYDatasetInfoCollect(
+    dataset_L1 = CollectDataset(
         csv_path=config.CSV_PATH4,  # L1 testing set
         global_mean=global_mean, 
-        consonant_select=L1_consonant_select
+        manipulant_select=L1_manipulant_select
     )
-    dataset_L2 = NPYDatasetInfoCollect(
+    dataset_L2 = CollectDataset(
         csv_path=config.CSV_PATH3,  # L2 testing set
         global_mean=global_mean, 
-        consonant_select=L2_consonant_select
+        manipulant_select=L2_manipulant_select
     )
     dataloader_L1 = DataLoader(dataset_L1, batch_size=config.BATCH_SIZE, shuffle=False)
     dataloader_L2 = DataLoader(dataset_L2, batch_size=config.BATCH_SIZE, shuffle=False)

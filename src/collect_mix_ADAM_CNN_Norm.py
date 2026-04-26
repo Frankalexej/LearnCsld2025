@@ -7,7 +7,7 @@ import torch.optim as optim
 import tqdm
 from model import SimpleResNet1DClass, SimpleResNet1DRecon, SimpleResNet1DEncode
 from torch.utils.data import DataLoader
-from dataset import NPYDatasetInfoCollect_AMP as CollectDataset
+from dataset import NPYDatasetInfoCollect
 import numpy as np
 import sys
 
@@ -153,19 +153,19 @@ def main(config_path, run_name=None, run_time=0):
         data_sum / count, dtype=torch.float32
     )
 
-    L1_manipulant_select = config.L1_MANIPULANT_SELECT  # e.g., ['s','c']
-    L2_manipulant_select = config.L2_MANIPULANT_SELECT  # e.g., ['sh','ch'] or ['s','ts'] or ['z', 'j']
+    L1_consonant_select = config.L1_CONSONANT_SELECT  # e.g., ['s','c']
+    L2_consonant_select = config.L2_CONSONANT_SELECT  # e.g., ['sh','ch'] or ['s','ts'] or ['z', 'j']
 
     # Load dataset
-    dataset_L1 = CollectDataset(
+    dataset_L1 = NPYDatasetInfoCollect(
         csv_path=config.CSV_PATH4,  # L1 testing set
         global_mean=global_mean, 
-        manipulant_select=L1_manipulant_select
+        consonant_select=L1_consonant_select
     )
-    dataset_L2 = CollectDataset(
+    dataset_L2 = NPYDatasetInfoCollect(
         csv_path=config.CSV_PATH3,  # L2 testing set
         global_mean=global_mean, 
-        manipulant_select=L2_manipulant_select
+        consonant_select=L2_consonant_select
     )
     dataloader_L1 = DataLoader(dataset_L1, batch_size=config.BATCH_SIZE, shuffle=False)
     dataloader_L2 = DataLoader(dataset_L2, batch_size=config.BATCH_SIZE, shuffle=False)
