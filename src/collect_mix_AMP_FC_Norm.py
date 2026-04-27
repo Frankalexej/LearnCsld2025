@@ -5,7 +5,7 @@ import pandas as pd
 import torch
 import torch.optim as optim
 import tqdm
-from model import LinearFCEncode as ThisEncoder
+from model import NonLinearFCEncode as ThisEncoder
 from torch.utils.data import DataLoader
 from dataset import NPYDatasetInfoCollect_AMP as CollectDataset
 import numpy as np
@@ -114,44 +114,25 @@ def evaluate_collect_outputs(
     return
 
 
-def main(config_path, run_name=None, run_time=0):
+def main(config_path, run_name=None, write_run_name=None, run_time=0):
     config = load_config(config_path)
     if run_name is not None:
         config.RUN_NAME = run_name
     else: 
         raise ValueError("Please provide run_name argument.")
-    
+    if write_run_name is not None:
+        config.WRITE_RUN_NAME = write_run_name
+    else: 
+        config.WRITE_RUN_NAME = config.RUN_NAME
+
     print("Running evaluation for:", config.RUN_NAME)
     
     #weight dir
     save_dir = os.path.join(config.MODEL_LOAD_BASE_PATH, 'weights', config.RUN_NAME, f'{run_time}')
     # os.makedirs(save_dir, exist_ok=True)
-    eval_save_dir_hyper = os.path.join(config.WRITE_BASE_PATH, 'eval_outputs', config.RUN_NAME, f'{run_time}')
+    eval_save_dir_hyper = os.path.join(config.WRITE_BASE_PATH, 'eval_outputs', config.WRITE_RUN_NAME, f'{run_time}')
     os.makedirs(eval_save_dir_hyper, exist_ok=True)
 
-    # # Here we collect the global means, this collection ensures that both L1 and L2 share the same normalization statistics. 
-    # df1 = pd.read_csv(config.CSV_PATH)  # This should always be the training L1
-    # df2 = pd.read_csv(config.CSV_PATH2) # This should always be the training L2
-    # eps = 1e-9
-    # df = pd.concat([df1, df2], ignore_index=True)
-    # # get the by dimension mean of dataset, in normal scale, use numpy for easier calculation
-    # data_sum = None
-    # count = 0
-
-    # for _, row in df.iterrows():
-    #     x = np.load(row['path'])          # (3, 17)
-    #     x = x.reshape(-1)                 # (51,)
-    #     x = x + eps                    # avoid dividing by 0
-
-    #     if data_sum is None:
-    #         data_sum = x.copy()
-    #     else:
-    #         data_sum += x
-    #     count += 1
-
-    # global_mean = torch.tensor(
-    #     data_sum / count, dtype=torch.float32
-    # )
     global_mean = 1.0
 
     L1_manipulant_select = config.L1_MANIPULANT_SELECT  # e.g., ['s','c']
@@ -222,7 +203,12 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     pre_load_config = load_config(args.config)
-    for run_name in pre_load_config.RUN_NAMES:
+    if not hasattr(pre_load_config, 'RUN_NAMES') or not hasattr(pre_load_config, 'RUN_TIMES_START') or not hasattr(pre_load_config, 'RUN_TIMES_END'):
+        raise ValueError("Config file must define RUN_NAMES, RUN_TIMES_START, and RUN_TIMES_END.")
+    if not hasattr(pre_load_config, 'WRITE_RUN_NAMES'):
+        pre_load_config.WRITE_RUN_NAMES = pre_load_config.RUN_NAMES
+
+    for run_name, write_run_name in zip(pre_load_config.RUN_NAMES, pre_load_config.WRITE_RUN_NAMES):
         for run_time in range(pre_load_config.RUN_TIMES_START, pre_load_config.RUN_TIMES_END):
             print("Collecting: ", run_name, run_time)
-            main(args.config, run_name=run_name, run_time=run_time)
+            main(args.config, run_name=run_name, write_run_name=write_run_name, run_time=run_time)
