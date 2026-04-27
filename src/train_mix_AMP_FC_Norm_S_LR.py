@@ -5,8 +5,8 @@ import os
 import torch
 import torch.optim as optim
 import tqdm
-from model import LinearFCRecon as ThisRCModel
-from model import LinearFCClass as ThisCLModel
+from model import NonLinearFCRecon as ThisRCModel
+from model import NonLinearFCClass as ThisCLModel
 from torch.utils.data import DataLoader
 from dataset import NPYDatasetCL_AMP as ThisCLDataset
 from dataset import NPYDatasetRC_AMP as ThisRCDataset
