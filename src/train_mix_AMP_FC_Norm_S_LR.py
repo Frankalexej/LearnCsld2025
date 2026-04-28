@@ -177,6 +177,8 @@ def main(config_path, run_time=0, this_seed=0):
     l1_lr = config.LR
     l2_lr = config.L2_LR
 
+    check_shape = True
+
     print(f"PARAMS: L1={L1_manipulant_select}; L2={L2_manipulant_select}; freeze={freeze_for_L2}. ")
 
     # Load dataset
@@ -316,6 +318,13 @@ def main(config_path, run_time=0, this_seed=0):
 
                 features = model1(inputs)
                 # features = features.unsqueeze(1)  # Add view dimension if needed
+
+                if check_shape: 
+                    print("inputs:", inputs.shape)
+                    print("features:", features.shape)
+                    print("targets:", targets.shape)
+                    check_shape = False
+
                 loss = criterion1(features, targets)
 
                 optimizer1.zero_grad()

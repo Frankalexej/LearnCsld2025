@@ -305,7 +305,7 @@ class NPYDatasetCL_AMP(Dataset):
         # Reshape as needed: flatten and add channel dimension
         data_tensor = data_tensor.reshape(-1)  # flatten to 1D NOTE: currently we borrow the VCV structure, anyway only C is changing. 
         # data_tensor = data_tensor / self.global_mean  # normalize by dataset global mean
-        data_tensor = data_tensor.unsqueeze(0)  # add channel dimension (1, N)
+        # data_tensor = data_tensor.unsqueeze(0)  # add channel dimension (1, N)
         # Now instead of using VCV, for testing, I will use only the C. 
         # data_tensor = data_tensor    # Just take the second element. 
 
@@ -352,7 +352,7 @@ class NPYDatasetRC_AMP(Dataset):
         data_tensor = data_tensor.reshape(-1)  # flatten to 1D NOTE: currently we borrow the VCV structure, anyway only C is changing. 
         # data_tensor = data_tensor / self.global_mean  # normalize by dataset global mean
 
-        data_tensor = data_tensor.unsqueeze(0)  # add channel dimension (1, N)
+        # data_tensor = data_tensor.unsqueeze(0)  # add channel dimension (1, N)
         # Now instead of using VCV, for testing, I will use only the C. 
         # data_tensor = data_tensor    # Just take the second element. 
 
@@ -449,7 +449,7 @@ class NPYDatasetInfoCollect_AMP(Dataset):
         data_tensor = data_tensor.reshape(-1)  # flatten to 1D NOTE: currently we borrow the VCV structure, anyway only C is changing. 
         # data_tensor = data_tensor / self.global_mean  # normalize by dataset global mean
 
-        data_tensor = data_tensor.unsqueeze(0)  # add channel dimension (1, N)
+        # data_tensor = data_tensor.unsqueeze(0)  # add channel dimension (1, N)
         # Now instead of using VCV, for testing, I will use only the C. 
         # data_tensor = data_tensor    # Just take the second element. 
 
