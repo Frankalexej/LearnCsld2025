@@ -7,7 +7,7 @@ POST_EPOCHS = 200
 LR = 1e-3
 L2_LR = 1e-3
 
-DATASET_NAME = "data_VW"
+DATASET_NAME = "data_VWR"
 CONDITION_SUFFIX = "equal"
 CSV_PATH = f'/mnt/storage/franklhtan/projects/LearnCsld2025/{DATASET_NAME}/data_train_{CONDITION_SUFFIX}/metadata_train_{CONDITION_SUFFIX}.csv'
 CSV_PATH2 = f'/mnt/storage/franklhtan/projects/LearnCsld2025/{DATASET_NAME}/data_train_{CONDITION_SUFFIX}/metadata_train_{CONDITION_SUFFIX}.csv'
