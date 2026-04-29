@@ -33,6 +33,6 @@ DETERMINISTIC = False         # True only if you need strict determinism
 
 SIMILARITY = "euclidean"
 RUN_NAME = '0430_RCRC_EQL_EWCp0_1e4_HID4'
-RUN_TIMES_START = 1
+RUN_TIMES_START = 4
 RUN_TIMES_END = RUN_TIMES_START+3
 SAMPLE_LIST = []

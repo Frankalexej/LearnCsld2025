@@ -20,19 +20,19 @@ HID_FEATURES = 4
 OUT_FEATURES = 4
 # Notice that because we are desigining this to be only either two identical CLs or RCCL or RCRC, so number of features do not differ. 
 PRE_METHOD = "RC"
-POST_METHOD = "CL"
+POST_METHOD = "RC"
 L1_MANIPULANT_SELECT = ['i', 'u', 'e', 'o']  # L1: i u e o
 L2_MANIPULANT_SELECT = ['i', 'u', 'ih', 'uh']  # L2: i u ih uh
 FREEZE_FOR_L2 = False            # whether to freeze the L1 encoder when training on L2
 CONSOLIDATION_METHOD = "EWC"
-CONSOLIDATION_STRENGTH = 10000.0   # trying smaller consolidation strength. p4 = 1e4. 
+CONSOLIDATION_STRENGTH = 1000000.0   # trying smaller consolidation strength. p3 = 1e3. 
 
 # Seed control
 BASE_SEED = 20260430          # shared across the entire project
 DETERMINISTIC = False         # True only if you need strict determinism
 
 SIMILARITY = "euclidean"
-RUN_NAME = '0430_RCCL_EQL_EWCp4_1e4_HID4'
-RUN_TIMES_START = 3
-RUN_TIMES_END = RUN_TIMES_START+3
+RUN_NAME = '0430_RCRC_EQL_EWCp6_1e4_HID4'
+RUN_TIMES_START = 1
+RUN_TIMES_END = RUN_TIMES_START+6
 SAMPLE_LIST = []
