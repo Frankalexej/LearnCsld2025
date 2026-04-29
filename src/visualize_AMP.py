@@ -370,7 +370,7 @@ def main(config_path):
     BASE_DIR = config.BASE_DIR if hasattr(config, "BASE_DIR") else Path(".")
     
     VECTOR_DIR = BASE_DIR / "eval_outputs"
-    VISUALIZATION_DIR = Path("./visualizations")
+    VISUALIZATION_DIR = BASE_DIR / "visualizations"
     OUTPUT_DIR = VISUALIZATION_DIR / "plots_2d_4dims_mean_ci"
     OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
     if not VECTOR_DIR.exists():

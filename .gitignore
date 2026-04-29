@@ -1,6 +1,7 @@
 /data*
 /eval_outputs
 /observe_outputs
+/visualizations
 /slurm_config
 /weights
 */wandb
