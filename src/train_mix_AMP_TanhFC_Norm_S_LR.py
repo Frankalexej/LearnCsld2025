@@ -244,9 +244,10 @@ def main(config_path, run_time=0, this_seed=0):
             global_mean=global_mean, 
             manipulant_select=L2_manipulant_select
         )
+        out_features_2 = config.OUT_FEATURES_2 if hasattr(config, 'OUT_FEATURES_2') else config.OUT_FEATURES
         model2 = ThisCLModel(in_features=config.IN_FEATURES, 
                              hid_features=config.HID_FEATURES, 
-                             out_features=config.OUT_FEATURES).to(config.DEVICE)
+                             out_features=out_features_2).to(config.DEVICE)
         criterion2 = torch.nn.CrossEntropyLoss(reduction="mean") # Using MSE for reconstruction. 
         optimizer2 = optim.Adam(model2.parameters(), lr=l2_lr)
     else: 

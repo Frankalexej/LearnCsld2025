@@ -18,6 +18,7 @@ DEVICE = 'cuda'
 IN_FEATURES = 15
 HID_FEATURES = 3
 OUT_FEATURES = 4
+OUT_FEATURES_2 = 6
 # Notice that because we are desigining this to be only either two identical CLs or RCCL or RCRC, so number of features do not differ. 
 PRE_METHOD = "CL"
 POST_METHOD = "CL"
