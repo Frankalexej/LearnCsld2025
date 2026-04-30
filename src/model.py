@@ -425,3 +425,106 @@ class NonLinearFCEncode(NonLinearFC):
         x = x.reshape(x.size(0), -1)
         hid = self.encoder(x)
         return hid
+    
+
+##################### Non-linear Tanh Model #####################
+"""
+Notice that there is no difference bewteen NonLinearFC Recon and Class, just for compatibility of codes. 
+"""
+class TanhFC(nn.Module): 
+    def __init__(self):
+        super().__init__()
+    
+    def forward(self, x): 
+        pass
+
+    def encode(self, x): 
+        pass
+
+    def set_freeze(self): 
+        pass
+
+    def set_unfreeze(self):
+        for p in self.parameters():
+            p.requires_grad = True
+
+class TanhFCRecon(TanhFC):
+    def __init__(self, in_features, hid_features, out_features, intermediate_features=None):
+        super().__init__()
+        if intermediate_features is None: 
+            intermediate_features = (in_features + hid_features) // 2
+
+        self.encoder = nn.Sequential(
+            nn.Linear(in_features, intermediate_features),
+            nn.Tanh(),
+            nn.Linear(intermediate_features, hid_features)
+        )
+        self.decoder = nn.Linear(hid_features, out_features)
+
+    def forward(self, x):
+        x = x.reshape(x.size(0), -1)
+        hid = self.encoder(x)
+        out = self.decoder(hid)
+        return out
+
+    def encode(self, x):
+        x = x.reshape(x.size(0), -1)
+        return self.encoder(x)
+    
+    def set_freeze(self, freeze_encoder=False, freeze_decoder=False):
+        for p in self.encoder.parameters():
+            p.requires_grad = not freeze_encoder
+        for p in self.decoder.parameters():
+            p.requires_grad = not freeze_decoder
+
+    def encoder_names(self): 
+        return ("encoder.")
+    
+class TanhFCClass(TanhFC):
+    def __init__(self, in_features, hid_features, out_features, intermediate_features=None):
+        super().__init__()
+        if intermediate_features is None:
+            intermediate_features = (in_features + hid_features) // 2
+
+        self.encoder = nn.Sequential(
+            nn.Linear(in_features, intermediate_features),
+            nn.Tanh(),
+            nn.Linear(intermediate_features, hid_features)
+        )
+        self.predictor = nn.Linear(hid_features, out_features)
+
+    def forward(self, x):
+        x = x.reshape(x.size(0), -1)
+        hid = self.encoder(x)
+        out = self.predictor(hid)
+        return out
+
+    def encode(self, x):
+        x = x.reshape(x.size(0), -1)
+        return self.encoder(x)
+    
+    def set_freeze(self, freeze_encoder=False, freeze_decoder=False):
+        for p in self.encoder.parameters():
+            p.requires_grad = not freeze_encoder
+        for p in self.decoder.parameters():
+            p.requires_grad = not freeze_decoder
+
+    def encoder_names(self): 
+        return ("encoder.")
+
+class TanhFCEncode(TanhFC):
+    def __init__(self, in_features, hid_features, out_features, intermediate_features=None):
+        super().__init__()
+        if intermediate_features is None:
+            intermediate_features = (in_features + hid_features) // 2
+
+        self.encoder = nn.Sequential(
+            nn.Linear(in_features, intermediate_features),
+            nn.Tanh(),
+            nn.Linear(intermediate_features, hid_features)
+        )
+
+    def forward(self, x):
+        x = x.reshape(x.size(0), -1)
+        hid = self.encoder(x)
+        return hid
