@@ -181,6 +181,11 @@ def main(config_path, run_time=0, this_seed=0):
 
     print(f"PARAMS: L1={L1_manipulant_select}; L2={L2_manipulant_select}; freeze={freeze_for_L2}. ")
 
+    in_features = config.IN_FEATURES
+    hid_features = config.HID_FEATURES
+    out_features = config.OUT_FEATURES
+    out_features_2 = config.OUT_FEATURES_2 if hasattr(config, 'OUT_FEATURES_2') else config.OUT_FEATURES
+
     # Load dataset
     if pre_method == "RC": 
         dataset1 = ThisRCDataset(
@@ -193,9 +198,9 @@ def main(config_path, run_time=0, this_seed=0):
             global_mean=global_mean, 
             manipulant_select=L1_manipulant_select
         )
-        model1 = ThisRCModel(in_features=config.IN_FEATURES, 
-                             hid_features=config.HID_FEATURES, 
-                             out_features=config.IN_FEATURES).to(config.DEVICE)
+        model1 = ThisRCModel(in_features=in_features, 
+                             hid_features=hid_features, 
+                             out_features=in_features).to(config.DEVICE)
         criterion1 = torch.nn.MSELoss(reduction="mean") # Using MSE for reconstruction. 
         optimizer1 = optim.Adam(model1.parameters(), lr=l1_lr)
     elif pre_method == "CL": 
@@ -209,9 +214,9 @@ def main(config_path, run_time=0, this_seed=0):
             global_mean=global_mean, 
             manipulant_select=L1_manipulant_select
         )
-        model1 = ThisCLModel(in_features=config.IN_FEATURES, 
-                             hid_features=config.HID_FEATURES, 
-                             out_features=config.OUT_FEATURES).to(config.DEVICE)
+        model1 = ThisCLModel(in_features=in_features, 
+                             hid_features=hid_features, 
+                             out_features=out_features).to(config.DEVICE)
         criterion1 = torch.nn.CrossEntropyLoss(reduction="mean")
         optimizer1 = optim.Adam(model1.parameters(), lr=l1_lr)
     else: 
@@ -228,9 +233,9 @@ def main(config_path, run_time=0, this_seed=0):
             global_mean=global_mean, 
             manipulant_select=L2_manipulant_select
         )
-        model2 = ThisRCModel(in_features=config.IN_FEATURES, 
-                             hid_features=config.HID_FEATURES, 
-                             out_features=config.IN_FEATURES).to(config.DEVICE)
+        model2 = ThisRCModel(in_features=in_features, 
+                             hid_features=hid_features, 
+                             out_features=in_features).to(config.DEVICE)
         criterion2 = torch.nn.MSELoss(reduction="mean") # Using MSE for reconstruction. 
         optimizer2 = optim.Adam(model2.parameters(), lr=l2_lr)
     elif post_method == "CL": 
@@ -244,9 +249,8 @@ def main(config_path, run_time=0, this_seed=0):
             global_mean=global_mean, 
             manipulant_select=L2_manipulant_select
         )
-        out_features_2 = config.OUT_FEATURES_2 if hasattr(config, 'OUT_FEATURES_2') else config.OUT_FEATURES
-        model2 = ThisCLModel(in_features=config.IN_FEATURES, 
-                             hid_features=config.HID_FEATURES, 
+        model2 = ThisCLModel(in_features=in_features, 
+                             hid_features=hid_features, 
                              out_features=out_features_2).to(config.DEVICE)
         criterion2 = torch.nn.CrossEntropyLoss(reduction="mean") # Using MSE for reconstruction. 
         optimizer2 = optim.Adam(model2.parameters(), lr=l2_lr)
@@ -362,6 +366,12 @@ def main(config_path, run_time=0, this_seed=0):
         # NOTE (20260323): We still additionally allowed RC -> CL by writing this part into the model. I think if we use a different task, we need to use a new decoder head. Even though the structure is the same, logically it is not reasonable to use old reconstruction head to do classification. 
         if pre_method != post_method: 
             print(f"{pre_method} -> {post_method}. Loading Encoder Only. ")
+            encoder_names = model1.encoder_names()
+            enc_state = {k: v for k, v in state.items() if k.startswith(encoder_names)}
+            model2.load_state_dict(enc_state, strict=False)
+        elif out_features != out_features_2:
+            # This is for the case of CL->CL with different number of classes, where we only load the encoder part. 
+            print(f"CL -> CL with different number of classes. Loading Encoder Only. ")
             encoder_names = model1.encoder_names()
             enc_state = {k: v for k, v in state.items() if k.startswith(encoder_names)}
             model2.load_state_dict(enc_state, strict=False)
