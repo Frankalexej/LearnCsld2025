@@ -104,10 +104,11 @@ def pair_meta_vec_files(run_dir: Path):
     paired.sort(key=lambda x: x["epoch"])
     return paired
 
+
 def load_run_data(run_dir: Path, condition_name: str, run_name: str):
     """
     Load all paired meta/vec files for one run.
-    Returns one concatenated dataframe with metadata and the actual hidden dimensions.
+    Returns one concatenated dataframe with metadata and 4 dimensions.
     """
     pairs = pair_meta_vec_files(run_dir)
     if not pairs:
@@ -115,7 +116,6 @@ def load_run_data(run_dir: Path, condition_name: str, run_name: str):
         return None
 
     dfs = []
-    hidden_dim_seen = None
 
     for item in pairs:
         epoch = item["epoch"]
@@ -137,28 +137,25 @@ def load_run_data(run_dir: Path, condition_name: str, run_name: str):
                 f"  {vec_path.name}: {vec.shape[0]} rows"
             )
 
-        if hidden_dim_seen is None:
-            hidden_dim_seen = vec.shape[1]
-        elif vec.shape[1] != hidden_dim_seen:
-            raise ValueError(
-                f"Hidden dimension mismatch in {run_dir}\n"
-                f"  Previous hidden dim: {hidden_dim_seen}\n"
-                f"  {vec_path.name}: {vec.shape}"
-            )
-
-        print(
-            f"[LOAD] {vec_path.name}: shape={vec.shape}, "
-            f"mean={vec.mean():.6f}, std={vec.std():.6f}, "
-            f"min={vec.min():.6f}, max={vec.max():.6f}"
-        )
+        # if vec.shape[1] != 4:
+        #     raise ValueError(
+        #         f"Expected 4 dimensions in {vec_path.name}, but got shape {vec.shape}"
+        #     )
+        if vec.shape[1] < 4:
+            # Pad with NaNs if less than 4 dimensions
+            padded_vec = np.full((vec.shape[0], 4), 0)
+            padded_vec[:, :vec.shape[1]] = vec
+            vec = padded_vec
 
         this_df = meta_df.copy()
         this_df["epoch"] = epoch
         this_df["condition"] = condition_name
         this_df["run"] = run_name
 
-        for d in range(vec.shape[1]):
-            this_df[f"dim_{d+1}"] = vec[:, d]
+        this_df["dim_1"] = vec[:, 0]
+        this_df["dim_2"] = vec[:, 1]
+        this_df["dim_3"] = vec[:, 2]
+        this_df["dim_4"] = vec[:, 3]
 
         dfs.append(this_df)
 
@@ -176,17 +173,9 @@ def summarize_long_df(df_all: pd.DataFrame, ci_level=0.95):
     plot_df = df_all.copy()
     plot_df["phoneme_plot"] = plot_df[phoneme_col].astype(str)
 
-    dim_cols = sorted(
-        [c for c in plot_df.columns if re.match(r"^dim_\d+$", c)],
-        key=lambda x: int(x.split("_")[1])
-    )
-
-    if not dim_cols:
-        raise ValueError("No hidden dimension columns found.")
-
     long_df = plot_df.melt(
         id_vars=["epoch", "condition", "run", "phoneme_plot"],
-        value_vars=dim_cols,
+        value_vars=["dim_1", "dim_2", "dim_3", "dim_4"],
         var_name="dimension",
         value_name="value"
     )
@@ -221,7 +210,8 @@ def summarize_long_df(df_all: pd.DataFrame, ci_level=0.95):
 
 def make_2d_dimension_subplot_mean_ci(df_all: pd.DataFrame, out_html: Path, ci_level=0.95):
     """
-    Make one subplot per actual hidden dimension.
+    Make 4 subplots:
+      one per dimension
     Plot:
       x = epoch
       y = mean dimension value
@@ -230,22 +220,22 @@ def make_2d_dimension_subplot_mean_ci(df_all: pd.DataFrame, out_html: Path, ci_l
     """
     summary = summarize_long_df(df_all, ci_level=ci_level)
 
-    dims = sorted(
-        summary["dimension"].unique(),
-        key=lambda x: int(x.split("_")[1])
-    )
+    dims = ["dim_1", "dim_2", "dim_3", "dim_4"]
     phonemes = sorted(summary["phoneme_plot"].unique())
 
-    n_dims = len(dims)
-    n_cols = 2 if n_dims > 1 else 1
-    n_rows = int(np.ceil(n_dims / n_cols))
-
     fig = make_subplots(
-        rows=n_rows,
-        cols=n_cols,
+        rows=2,
+        cols=2,
         subplot_titles=dims,
         shared_xaxes=True
     )
+
+    dim_to_pos = {
+        "dim_1": (1, 1),
+        "dim_2": (1, 2),
+        "dim_3": (2, 1),
+        "dim_4": (2, 2),
+    }
 
     line_palette = [
         "rgb(99,110,250)",
@@ -259,7 +249,6 @@ def make_2d_dimension_subplot_mean_ci(df_all: pd.DataFrame, out_html: Path, ci_l
         "rgb(255,151,255)",
         "rgb(254,203,82)"
     ]
-
     fill_palette = [
         "rgba(99,110,250,0.20)",
         "rgba(239,85,59,0.20)",
@@ -282,10 +271,8 @@ def make_2d_dimension_subplot_mean_ci(df_all: pd.DataFrame, out_html: Path, ci_l
         for i, ph in enumerate(phonemes)
     }
 
-    for i, dim in enumerate(dims):
-        r = i // n_cols + 1
-        c = i % n_cols + 1
-
+    for dim in dims:
+        r, c = dim_to_pos[dim]
         dim_df = summary[summary["dimension"] == dim].copy()
 
         for ph in phonemes:
@@ -296,6 +283,7 @@ def make_2d_dimension_subplot_mean_ci(df_all: pd.DataFrame, out_html: Path, ci_l
             line_color = phoneme_to_line[ph]
             fill_color = phoneme_to_fill[ph]
 
+            # Upper CI boundary
             fig.add_trace(
                 go.Scatter(
                     x=sub["epoch"],
@@ -309,6 +297,7 @@ def make_2d_dimension_subplot_mean_ci(df_all: pd.DataFrame, out_html: Path, ci_l
                 row=r, col=c
             )
 
+            # Lower CI boundary + fill
             fig.add_trace(
                 go.Scatter(
                     x=sub["epoch"],
@@ -324,6 +313,7 @@ def make_2d_dimension_subplot_mean_ci(df_all: pd.DataFrame, out_html: Path, ci_l
                 row=r, col=c
             )
 
+            # Mean line
             fig.add_trace(
                 go.Scatter(
                     x=sub["epoch"],
@@ -332,7 +322,7 @@ def make_2d_dimension_subplot_mean_ci(df_all: pd.DataFrame, out_html: Path, ci_l
                     line=dict(width=2, color=line_color),
                     name=ph,
                     legendgroup=ph,
-                    showlegend=(dim == dims[0]),
+                    showlegend=(dim == "dim_1"),
                     customdata=np.stack(
                         [sub["n"], sub["ci_low"], sub["ci_high"]],
                         axis=-1
@@ -340,20 +330,20 @@ def make_2d_dimension_subplot_mean_ci(df_all: pd.DataFrame, out_html: Path, ci_l
                     hovertemplate=(
                         "Phoneme=%{fullData.name}<br>"
                         "Epoch=%{x}<br>"
-                        "Mean=%{y:.6f}<br>"
+                        "Mean=%{y:.4f}<br>"
                         "n=%{customdata[0]}<br>"
-                        "CI=[%{customdata[1]:.6f}, %{customdata[2]:.6f}]"
+                        "CI=[%{customdata[1]:.4f}, %{customdata[2]:.4f}]"
                         "<extra></extra>"
                     )
                 ),
                 row=r, col=c
             )
 
-    title = f"{df_all['condition'].iloc[0]} | run {df_all['run'].iloc[0]} | {len(dims)} hidden dims"
+    title = f"{df_all['condition'].iloc[0]} | run {df_all['run'].iloc[0]}"
 
     fig.update_layout(
         title=title,
-        height=450 * n_rows,
+        height=900,
         width=1200,
         template="plotly_white",
         legend_title_text="Phoneme"
@@ -381,7 +371,7 @@ def main(config_path):
     
     VECTOR_DIR = BASE_DIR / "eval_outputs"
     VISUALIZATION_DIR = BASE_DIR / "visualizations"
-    OUTPUT_DIR = VISUALIZATION_DIR / "plots_2d_3dims_mean_ci"
+    OUTPUT_DIR = VISUALIZATION_DIR / "plots_2d_4dims_mean_ci"
     OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
     if not VECTOR_DIR.exists():
         raise FileNotFoundError(f"Base directory not found: {VECTOR_DIR}")
@@ -413,7 +403,7 @@ def main(config_path):
                 if df_all is None:
                     continue
 
-                out_html = OUTPUT_DIR / f"{condition_name}__run_{run_name}__mean_ci.html"
+                out_html = OUTPUT_DIR / f"{condition_name}__run_{run_name}__4dim_mean_ci.html"
                 make_2d_dimension_subplot_mean_ci(df_all, out_html, ci_level=0.95)
 
             except Exception as e:
