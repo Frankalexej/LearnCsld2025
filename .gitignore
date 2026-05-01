@@ -3,4 +3,7 @@ reports
 vectors
 visualizations
 weights
+debug*
+hidrep_*
+inputs
 __pycache__
