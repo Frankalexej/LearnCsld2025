@@ -1,3 +1,5 @@
+from unicodedata import name
+
 import torch
 import torch.nn as nn
 
@@ -29,15 +31,24 @@ class EWC:
         else: 
             self.estimate_num_batches = estimate_num_batches
 
+    def use_for_ewc(self, name, p): 
+        # NOTE: this time we only regularize the encoder part, not the whole model. 
+        return p.requires_grad and ("encoder" in name)
+
     def penalty(self, new_model): 
         if self.fim is None or self.old_params is None:
             raise ValueError("FIM and old parameters must be calculated before calling penalty.")
         
         new_params = new_model.named_parameters()
         loss = torch.tensor(0.0).to(self.device)
-        for name, p in new_params:
-            if name in self.fim: 
-                loss += (((self.old_params[name] - p) ** 2) * self.fim[name]).flatten().sum()
+        for name, p in new_params: 
+            if (name not in self.fim) or (name not in self.old_params): 
+                continue
+            if p.shape != self.old_params[name].shape: 
+                print(f"Warning: shape mismatch for parameter {name}. Skipping EWC penalty for this parameter. ")
+                continue
+            
+            loss += (((self.old_params[name] - p) ** 2) * self.fim[name]).flatten().sum()
         return loss * self.ewc_lambda
     
     def calculate_fim(self, model, criterion): 
@@ -50,7 +61,7 @@ class EWC:
         fim = {
             name: torch.zeros_like(p, device=self.device)
             for name, p in model.named_parameters()
-            if p.requires_grad
+            if (p.requires_grad and self.use_for_ewc(name, p))
         }
 
         num_batches = 0
@@ -72,7 +83,7 @@ class EWC:
             loss.backward()
 
             for name, p in model.named_parameters(): 
-                if p.requires_grad and p.grad is not None: 
+                if (p.requires_grad and p.grad is not None and self.use_for_ewc(name, p)): 
                     fim[name] += p.grad.detach() ** 2
             
             num_batches += 1
@@ -84,7 +95,7 @@ class EWC:
         theta_star = {
             name: p.detach().clone()
             for name, p in model.named_parameters()
-            if p.requires_grad
+            if (p.requires_grad and self.use_for_ewc(name, p))
         }
 
         # Debugging: print out the FIM values to check if they are reasonable.
