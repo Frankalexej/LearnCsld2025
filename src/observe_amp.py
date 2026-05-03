@@ -52,12 +52,14 @@ if __name__ == '__main__':
                 vec_L2 = np.load(os.path.join(run_name_path, f"vec_E{epoch}_L2.npy"))           # shape (N, 4)
                 meta_L2 = pd.read_csv(os.path.join(run_name_path, f"meta_E{epoch}_L2.csv"))     # must align row-by-row
                 assert len(vec_L2) == len(meta_L2), "Vector and metadata length mismatch (L2)!"
-                vec_L1 = np.load(os.path.join(run_name_path, f"vec_E{epoch}_L1.npy")) # shape (N, 4)
-                meta_L1 = pd.read_csv(os.path.join(run_name_path, f"meta_E{epoch}_L1.csv")) # must align row-by-row
-                assert len(vec_L1) == len(meta_L1), "Vector and metadata length mismatch (L1)!"
+                # vec_L1 = np.load(os.path.join(run_name_path, f"vec_E{epoch}_L1.npy")) # shape (N, 4)
+                # meta_L1 = pd.read_csv(os.path.join(run_name_path, f"meta_E{epoch}_L1.csv")) # must align row-by-row
+                # assert len(vec_L1) == len(meta_L1), "Vector and metadata length mismatch (L1)!"
         
-                vecs = np.vstack((vec_L2, vec_L1))
-                metas = pd.concat([meta_L2, meta_L1], axis=0, ignore_index=True)
+                # vecs = np.vstack((vec_L2, vec_L1))
+                # metas = pd.concat([meta_L2, meta_L1], axis=0, ignore_index=True)
+                vecs = vec_L2
+                metas = meta_L2
 
                 # -----------------------------------------------
                 # NEW: vowel-by-vowel pairwise computation
