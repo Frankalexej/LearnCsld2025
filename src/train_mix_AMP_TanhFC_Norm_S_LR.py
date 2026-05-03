@@ -7,6 +7,7 @@ import torch.optim as optim
 import tqdm
 from model import TanhFCRecon as ThisRCModel
 from model import TanhFCClass as ThisCLModel
+from model import TanhFCContrastive as ThisSCModel
 from torch.utils.data import DataLoader
 from dataset import NPYDatasetCL_AMP as ThisCLDataset
 from dataset import NPYDatasetRC_AMP as ThisRCDataset
@@ -219,6 +220,25 @@ def main(config_path, run_time=0, this_seed=0):
                              out_features=out_features).to(config.DEVICE)
         criterion1 = torch.nn.CrossEntropyLoss(reduction="mean")
         optimizer1 = optim.Adam(model1.parameters(), lr=l1_lr)
+    elif pre_method == "SC": 
+        # contrastive learning, supcon
+        supcon_temperature = getattr(config, "SUPCON_TEMPERATURE", 0.07)
+        dataset1 = ThisCLDataset(
+            csv_path=config.CSV_PATH, 
+            global_mean=global_mean, 
+            manipulant_select=L1_manipulant_select
+        )
+        testset1 = ThisCLDataset(
+            csv_path=config.CSV_PATH4, 
+            global_mean=global_mean, 
+            manipulant_select=L1_manipulant_select
+        )
+        model1 = ThisSCModel(in_features=in_features, 
+                             hid_features=hid_features, 
+                             out_features=out_features).to(config.DEVICE)
+        criterion1 = SupConLoss(temperature=supcon_temperature)
+        optimizer1 = optim.Adam(model1.parameters(), lr=l1_lr)
+
     else: 
         raise AssertionError("Pre method not existing! ")
     
@@ -254,6 +274,24 @@ def main(config_path, run_time=0, this_seed=0):
                              out_features=out_features_2).to(config.DEVICE)
         criterion2 = torch.nn.CrossEntropyLoss(reduction="mean") # Using MSE for reconstruction. 
         optimizer2 = optim.Adam(model2.parameters(), lr=l2_lr)
+    elif post_method == "SC": 
+        # contrastive learning, supcon
+        supcon_temperature = getattr(config, "SUPCON_TEMPERATURE", 0.07)
+        dataset2 = ThisCLDataset(
+            csv_path=config.CSV_PATH2, 
+            global_mean=global_mean, 
+            manipulant_select=L2_manipulant_select
+        )
+        testset2 = ThisCLDataset(
+            csv_path=config.CSV_PATH3, 
+            global_mean=global_mean, 
+            manipulant_select=L2_manipulant_select
+        )
+        model2 = ThisSCModel(in_features=in_features, 
+                             hid_features=hid_features, 
+                             out_features=out_features_2).to(config.DEVICE)
+        criterion2 = SupConLoss(temperature=supcon_temperature)
+        optimizer2 = optim.Adam(model2.parameters(), lr=l2_lr)
     else: 
         raise AssertionError("Post method not existing! ")
 
@@ -263,15 +301,23 @@ def main(config_path, run_time=0, this_seed=0):
     testloader2 = make_loader(testset2, batch_size=config.BATCH_SIZE, shuffle=False, seed=this_seed+1)
 
     # here we deal with EWC settings
-    if consolidation_method == "EWC": 
+    if (consolidation_method == "EWC"): 
         print("EWC activated")
-        fimloader = make_loader(dataset1, batch_size=1, shuffle=True, seed=this_seed)   # only have dataset1, because fim is calculated based on L1 learning results. Using 1-sample batch to calculate fim, because we want the fim to be calculated on the sample level, which is more accurate. 
+        if pre_method != "SC": 
+            fimloader = make_loader(dataset1, batch_size=1, shuffle=True, seed=this_seed)   # only have dataset1, because fim is calculated based on L1 learning results. Using 1-sample batch to calculate fim, because we want the fim to be calculated on the sample level, which is more accurate. 
+        elif pre_method == "SC": 
+            print("FIM calculated on batch contrastive loss, which is an approximation. ")
+            fimloader = make_loader(dataset1, batch_size=config.BATCH_SIZE, shuffle=True, seed=this_seed)   # only have dataset1, because fim is calculated based on L1 learning results. Using 1-sample batch to calculate fim, because we want the fim to be calculated on the sample level, which is more accurate. 
+        else: 
+            raise AssertionError("Pre method not existing! ")
+        
         ewc = EWC(
             dataloader=fimloader, 
             ewc_lambda=config.CONSOLIDATION_STRENGTH, 
             estimate_num_batches=None, 
             device=config.DEVICE
             )
+    
         
     # In this way, we can designate the training methods of L1 and L2. 
 

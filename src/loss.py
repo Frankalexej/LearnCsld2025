@@ -2,6 +2,7 @@ from unicodedata import name
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 from typing import List, Sequence, Tuple, Union, Optional
 
@@ -107,3 +108,58 @@ class EWC:
         self.fim = fim
         self.old_params = theta_star
         return 
+    
+
+class SupConLoss(nn.Module):
+    """
+    Supervised contrastive loss for one view per sample.
+
+    features: [batch, hidden_dim]
+    labels:   [batch]
+    """
+    def __init__(self, temperature=0.07, eps=1e-12):
+        super().__init__()
+        self.temperature = temperature
+        self.eps = eps
+
+    def forward(self, features, labels):
+        device = features.device
+
+        labels = labels.contiguous().view(-1, 1)
+
+        # Normalize hidden vectors so the loss uses cosine similarity
+        features = F.normalize(features, dim=1)
+
+        batch_size = features.shape[0]
+
+        # similarity matrix: [B, B]
+        sim = torch.matmul(features, features.T) / self.temperature
+
+        # remove self-comparisons
+        logits_mask = torch.ones_like(sim, device=device)
+        logits_mask.fill_diagonal_(0)
+
+        # positive mask: same label, excluding self
+        pos_mask = torch.eq(labels, labels.T).float().to(device)
+        pos_mask = pos_mask * logits_mask
+
+        # numerical stability
+        sim = sim - sim.max(dim=1, keepdim=True).values.detach()
+
+        exp_sim = torch.exp(sim) * logits_mask
+        log_prob = sim - torch.log(exp_sim.sum(dim=1, keepdim=True) + self.eps)
+
+        # number of positives for each anchor
+        pos_count = pos_mask.sum(dim=1)
+
+        # skip anchors with no positive example in the batch
+        valid = pos_count > 0
+
+        if valid.sum() == 0:
+            return torch.tensor(0.0, device=device, requires_grad=True)
+
+        mean_log_prob_pos = (pos_mask * log_prob).sum(dim=1) / (pos_count + self.eps)
+
+        loss = -mean_log_prob_pos[valid].mean()
+
+        return loss

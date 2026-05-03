@@ -512,6 +512,36 @@ class TanhFCClass(TanhFC):
     def encoder_names(self): 
         return ("encoder.")
 
+class TanhFCContrastive(TanhFC):
+    def __init__(self, in_features, hid_features, out_features, intermediate_features=None):
+        super().__init__()
+        if intermediate_features is None:
+            intermediate_features = (in_features + hid_features) // 2
+
+        self.encoder = nn.Sequential(
+            nn.Linear(in_features, intermediate_features),
+            nn.Tanh(),
+            nn.Linear(intermediate_features, hid_features)
+        )
+
+    def forward(self, x):
+        x = x.reshape(x.size(0), -1)
+        out = self.encoder(x)
+        return out
+
+    def encode(self, x):
+        x = x.reshape(x.size(0), -1)
+        return self.encoder(x)
+    
+    def set_freeze(self, freeze_encoder=False, freeze_decoder=False):
+        for p in self.encoder.parameters():
+            p.requires_grad = not freeze_encoder
+        for p in self.decoder.parameters():
+            p.requires_grad = not freeze_decoder
+
+    def encoder_names(self): 
+        return ("encoder.")
+
 class TanhFCEncode(TanhFC):
     def __init__(self, in_features, hid_features, out_features, intermediate_features=None):
         super().__init__()
