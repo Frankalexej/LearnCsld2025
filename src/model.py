@@ -590,3 +590,12 @@ class SimpleResNet1Dv2(nn.Module):
         x = self.layer3(x)
         x = x.squeeze(-1)
         return self.fc(x)
+    
+    def encode(self, x):
+        return self.forward(x)
+    
+    def set_freeze(self, freeze_encoder=False, freeze_decoder=False):
+        raise NotImplementedError("This model does not have a separate decoder, so set_freeze is not applicable.")
+
+    def encoder_names(self): 
+        return ("layer1.", "layer2.", "layer3.", "fc.")

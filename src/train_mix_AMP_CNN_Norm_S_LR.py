@@ -407,7 +407,10 @@ def main(config_path, run_time=0, this_seed=0):
         state = model1.state_dict()
         # NOTE: since we are not anymore using RC->CL, or CL->RC, there is no need to only load encoder. In fact, it is more justifiable to load both encoder and decoder. 
         # NOTE (20260323): We still additionally allowed RC -> CL by writing this part into the model. I think if we use a different task, we need to use a new decoder head. Even though the structure is the same, logically it is not reasonable to use old reconstruction head to do classification. 
-        if pre_method != post_method: 
+        if config.FORCE_ALL_LOAD: 
+            print("Force all load activated. Loading the whole model. ")
+            model2.load_state_dict(state, strict=True)  # strict=False: otherwise it will check whether the whole target model is matched.
+        elif pre_method != post_method: 
             print(f"{pre_method} -> {post_method}. Loading Encoder Only. ")
             encoder_names = model1.encoder_names()
             enc_state = {k: v for k, v in state.items() if k.startswith(encoder_names)}
