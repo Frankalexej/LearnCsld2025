@@ -32,9 +32,12 @@ class EWC:
         else: 
             self.estimate_num_batches = estimate_num_batches
 
-    def use_for_ewc(self, name, p): 
+    def use_for_ewc(self, name, p, encoder_names=None): 
         # NOTE: this time we only regularize the encoder part, not the whole model. 
-        return p.requires_grad and ("encoder" in name)
+        if encoder_names is None:
+            return p.requires_grad
+        else:
+            return p.requires_grad and any(name.startswith(enc_name) for enc_name in encoder_names)
 
     def penalty(self, new_model): 
         if self.fim is None or self.old_params is None:
@@ -59,10 +62,11 @@ class EWC:
         """
         print("Calculating FIM")
         model.eval()
+        model_encoder_names = model.encoder_names() if hasattr(model, "encoder_names") else None
         fim = {
             name: torch.zeros_like(p, device=self.device)
             for name, p in model.named_parameters()
-            if (p.requires_grad and self.use_for_ewc(name, p))
+            if (p.requires_grad and self.use_for_ewc(name, p, encoder_names=model_encoder_names))
         }
 
         num_batches = 0
@@ -84,7 +88,7 @@ class EWC:
             loss.backward()
 
             for name, p in model.named_parameters(): 
-                if (p.requires_grad and p.grad is not None and self.use_for_ewc(name, p)): 
+                if (p.requires_grad and p.grad is not None and self.use_for_ewc(name, p, encoder_names=model_encoder_names)): 
                     fim[name] += p.grad.detach() ** 2
             
             num_batches += 1
@@ -96,7 +100,7 @@ class EWC:
         theta_star = {
             name: p.detach().clone()
             for name, p in model.named_parameters()
-            if (p.requires_grad and self.use_for_ewc(name, p))
+            if (p.requires_grad and self.use_for_ewc(name, p, encoder_names=model_encoder_names))
         }
 
         # Debugging: print out the FIM values to check if they are reasonable.
