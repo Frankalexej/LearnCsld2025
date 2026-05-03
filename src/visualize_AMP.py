@@ -381,7 +381,7 @@ def main(config_path):
     
     VECTOR_DIR = BASE_DIR / "eval_outputs"
     VISUALIZATION_DIR = BASE_DIR / "visualizations"
-    OUTPUT_DIR = VISUALIZATION_DIR / "plots_2d_3dims_mean_ci"
+    OUTPUT_DIR = VISUALIZATION_DIR / "plots_hidden_dims_mean_ci"
     OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
     if not VECTOR_DIR.exists():
         raise FileNotFoundError(f"Base directory not found: {VECTOR_DIR}")
