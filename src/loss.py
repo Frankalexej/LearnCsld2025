@@ -127,39 +127,39 @@ class SupConLoss(nn.Module):
 
         labels = labels.contiguous().view(-1, 1)
 
-        # Normalize hidden vectors so the loss uses cosine similarity
-        features = F.normalize(features, dim=1)
-
         batch_size = features.shape[0]
 
-        # similarity matrix: [B, B]
-        sim = torch.matmul(features, features.T) / self.temperature
+        anchor_feature = features
+        contrast_feature = features
 
-        # remove self-comparisons
-        logits_mask = torch.ones_like(sim, device=device)
-        logits_mask.fill_diagonal_(0)
-
-        # positive mask: same label, excluding self
-        pos_mask = torch.eq(labels, labels.T).float().to(device)
-        pos_mask = pos_mask * logits_mask
+        anchor_norm = torch.sum(anchor_feature ** 2, dim=1, keepdim=True)
+        contrast_norm = torch.sum(contrast_feature ** 2, dim=1, keepdim=True)
+        distances = anchor_norm - 2 * torch.matmul(anchor_feature, contrast_feature.T) + contrast_norm.T
+        distances = torch.sqrt(torch.clamp(distances, min=1e-8))  # 防止数值问题
+        anchor_dot_contrast = -distances / self.temperature
 
         # numerical stability
-        sim = sim - sim.max(dim=1, keepdim=True).values.detach()
+        logits_max, _ = torch.max(anchor_dot_contrast, dim=1, keepdim=True)
+        logits = anchor_dot_contrast - logits_max.detach()
 
-        exp_sim = torch.exp(sim) * logits_mask
-        log_prob = sim - torch.log(exp_sim.sum(dim=1, keepdim=True) + self.eps)
+        # label mask: [B, B]
+        labels = labels.contiguous().view(-1, 1)
+        mask = torch.eq(labels, labels.T).float().to(device)
 
-        # number of positives for each anchor
-        pos_count = pos_mask.sum(dim=1)
+        # remove self-comparisons
+        logits_mask = torch.ones_like(mask)
+        logits_mask.fill_diagonal_(0)
 
-        # skip anchors with no positive example in the batch
-        valid = pos_count > 0
+        mask = mask * logits_mask
+        exp_logits = torch.exp(logits) * logits_mask
 
-        if valid.sum() == 0:
-            return torch.tensor(0.0, device=device, requires_grad=True)
-
-        mean_log_prob_pos = (pos_mask * log_prob).sum(dim=1) / (pos_count + self.eps)
-
-        loss = -mean_log_prob_pos[valid].mean()
+        mask = mask * logits_mask
+        exp_logits = torch.exp(logits) * logits_mask
+        log_prob = logits - torch.log(exp_logits.sum(1, keepdim=True) + 1e-12)
+        mask_pos_pairs = mask.sum(1)
+        mask_pos_pairs = torch.where(mask_pos_pairs < 1e-6, 1, mask_pos_pairs)
+        mean_log_prob_pos = (mask * log_prob).sum(1) / mask_pos_pairs
+        loss = - (self.temperature / self.base_temperature) * mean_log_prob_pos
+        loss = loss.mean()
 
         return loss
