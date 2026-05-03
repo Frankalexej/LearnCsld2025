@@ -159,7 +159,7 @@ class SupConLoss(nn.Module):
         mask_pos_pairs = mask.sum(1)
         mask_pos_pairs = torch.where(mask_pos_pairs < 1e-6, 1, mask_pos_pairs)
         mean_log_prob_pos = (mask * log_prob).sum(1) / mask_pos_pairs
-        loss = - (self.temperature / self.base_temperature) * mean_log_prob_pos
+        loss = - mean_log_prob_pos
         loss = loss.mean()
 
         return loss
