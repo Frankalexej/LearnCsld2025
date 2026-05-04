@@ -514,3 +514,56 @@ class NPYDatasetInfoCollect_AMP(Dataset):
         }
 
         return data_tensor, info
+    
+
+class NPYDatasetInfoCollect_AMP_CNN(Dataset): 
+    """
+    Dataset class that returns data along with metadata information.
+    For EVLUATION only. 
+    """
+    def __init__(self, csv_path, global_mean=1.0, manipulant_select=None):
+        """
+        Args:
+            csv_path (str): Path to the CSV metadata file.
+            global_mean (float): Global mean for normalization.
+        """
+        # Load CSV
+        df = pd.read_csv(csv_path)
+        # NOTE: new feture 20260203 to select only specific consonant data.
+        if manipulant_select is not None:
+            df = df[df['vowel'].isin(manipulant_select)].reset_index(drop=True)
+
+        # Store DataFrame
+        self.df = df
+        self.global_mean = global_mean
+
+    def __len__(self):
+        return len(self.df)
+
+    def __getitem__(self, idx):
+        row = self.df.iloc[idx]
+        data = np.load(row['path'])  # shape: (3, 17)
+
+        # Convert numpy array to tensor
+        data_tensor = torch.tensor(data, dtype=torch.float32)
+
+        # Reshape as needed: flatten and add channel dimension
+        data_tensor = data_tensor.reshape(-1)  # flatten to 1D NOTE: currently we borrow the VCV structure, anyway only C is changing. 
+        # data_tensor = data_tensor / self.global_mean  # normalize by dataset global mean
+
+        data_tensor = data_tensor.unsqueeze(0)  # add channel dimension (1, N)
+        # Now instead of using VCV, for testing, I will use only the C. 
+        # data_tensor = data_tensor    # Just take the second element. 
+
+        info = {
+            "uid": row["uid"],
+            "path": row["path"],
+            "f1": row["f1"],
+            "vowel_dur": row["vowel_dur"],
+            "f2": row["f2"],
+            "word": row["word"],
+            "consonant": row["consonant"],
+            "vowel": row["vowel"],
+        }
+
+        return data_tensor, info
