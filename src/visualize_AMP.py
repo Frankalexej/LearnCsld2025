@@ -365,6 +365,111 @@ def make_2d_dimension_subplot_mean_ci(df_all: pd.DataFrame, out_html: Path, ci_l
     fig.write_html(str(out_html))
     print(f"[SAVED] {out_html}")
 
+def load_run_data_pca(run_dir: Path, condition_name: str, run_name: str):
+    """
+    Load all paired meta/vec files for one run, concatenate them,
+    and return:
+      df_all: metadata + vectors + epoch/condition/run
+      X_all:  2D numpy array of raw encodings
+    """
+    pairs = pair_meta_vec_files(run_dir)
+    if not pairs:
+        print(f"[INFO] No valid meta/vec pairs found in {run_dir}")
+        return None, None
+
+    dfs = []
+    all_vecs = []
+
+    for item in pairs:
+        epoch = item["epoch"]
+        meta_path = item["meta_path"]
+        vec_path = item["vec_path"]
+
+        meta_df = pd.read_csv(meta_path)
+        vec = np.load(vec_path)
+
+        # Flatten if vectors are not already 2D
+        if vec.ndim == 1:
+            vec = vec[:, None]
+        elif vec.ndim > 2:
+            vec = vec.reshape(vec.shape[0], -1)
+
+        if len(meta_df) != vec.shape[0]:
+            raise ValueError(
+                f"Row mismatch in {run_dir}\n"
+                f"  {meta_path.name}: {len(meta_df)} rows\n"
+                f"  {vec_path.name}: {vec.shape[0]} rows"
+            )
+
+        this_df = meta_df.copy()
+        this_df["epoch"] = epoch
+        this_df["condition"] = condition_name
+        this_df["run"] = run_name
+
+        dfs.append(this_df)
+        all_vecs.append(vec)
+
+    df_all = pd.concat(dfs, ignore_index=True)
+    X_all = np.concatenate(all_vecs, axis=0)
+
+    return df_all, X_all
+
+
+def make_animated_plot(df_all: pd.DataFrame, X_all: np.ndarray, out_html: Path):
+    # Determine phoneme column
+    phoneme_col = PHONEME_COLUMN if PHONEME_COLUMN is not None else infer_phoneme_column(df_all)
+
+    # Fit PCA once across all epochs in this run
+    pca = PCA(n_components=3)
+    X_pca = pca.fit_transform(X_all)
+
+    plot_df = df_all.copy()
+    plot_df["PC1"] = X_pca[:, 0]
+    plot_df["PC2"] = X_pca[:, 1]
+    plot_df["PC3"] = X_pca[:, 2]
+    plot_df["phoneme_plot"] = plot_df[phoneme_col].astype(str)
+
+    # Sort frames
+    plot_df = plot_df.sort_values(["epoch"]).reset_index(drop=True)
+
+    title = (
+        f"{plot_df['condition'].iloc[0]} | run {plot_df['run'].iloc[0]}"
+        f"<br>PCA explained variance: "
+        f"{pca.explained_variance_ratio_[0]:.3f}, "
+        f"{pca.explained_variance_ratio_[1]:.3f}, "
+        f"{pca.explained_variance_ratio_[2]:.3f}"
+    )
+
+    fig = px.scatter_3d(
+        plot_df,
+        x="PC1",
+        y="PC2",
+        z="PC3",
+        color="phoneme_plot",
+        animation_frame="epoch",
+        hover_data=["phoneme_plot"],
+        title=title
+    )
+
+    fig.update_traces(marker=dict(size=1))
+
+    # Keep axis ranges fixed across animation frames
+    x_margin = (plot_df["PC1"].max() - plot_df["PC1"].min()) * 0.05 + 1e-9
+    y_margin = (plot_df["PC2"].max() - plot_df["PC2"].min()) * 0.05 + 1e-9
+    z_margin = (plot_df["PC3"].max() - plot_df["PC3"].min()) * 0.05 + 1e-9
+
+    fig.update_layout(
+        scene=dict(
+            xaxis=dict(range=[plot_df["PC1"].min() - x_margin, plot_df["PC1"].max() + x_margin]),
+            yaxis=dict(range=[plot_df["PC2"].min() - y_margin, plot_df["PC2"].max() + y_margin]),
+            zaxis=dict(range=[plot_df["PC3"].min() - z_margin, plot_df["PC3"].max() + z_margin]),
+        ),
+        legend_title_text="Phoneme"
+    )
+
+    fig.write_html(str(out_html))
+    print(f"[SAVED] {out_html}")
+
 def load_config(config_path):
     spec = importlib.util.spec_from_file_location("config", config_path)
     config = importlib.util.module_from_spec(spec)
@@ -382,7 +487,9 @@ def main(config_path):
     VECTOR_DIR = BASE_DIR / "eval_outputs"
     VISUALIZATION_DIR = BASE_DIR / "visualizations"
     OUTPUT_DIR = VISUALIZATION_DIR / "plots_hidden_dims_mean_ci"
+    VEC_OUTPUT_DIR = VISUALIZATION_DIR / "plots_pca_3d"
     OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
+    VEC_OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
     if not VECTOR_DIR.exists():
         raise FileNotFoundError(f"Base directory not found: {VECTOR_DIR}")
 
@@ -418,6 +525,15 @@ def main(config_path):
 
             except Exception as e:
                 print(f"[ERROR] Failed on {run_dir}: {e}")
+
+            try: 
+                df_all, X_all = load_run_data_pca(run_dir, condition_name, run_name)
+                if df_all is None:
+                    continue
+                out_html = OUTPUT_DIR / f"{condition_name}__run_{run_name}__pca3d_animation.html"
+                make_animated_plot(df_all, X_all, out_html)
+            except Exception as e: 
+                print(f"[ERROR] Failed PCA plot on {run_dir}: {e}")
 
 
 if __name__ == "__main__": 
