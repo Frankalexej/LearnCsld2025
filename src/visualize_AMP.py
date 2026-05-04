@@ -394,6 +394,10 @@ def load_run_data_pca(run_dir: Path, condition_name: str, run_name: str):
         elif vec.ndim > 2:
             vec = vec.reshape(vec.shape[0], -1)
 
+        # do PCA here
+        pca = PCA(n_components=3)
+        vec_pca = pca.fit_transform(vec)
+
         if len(meta_df) != vec.shape[0]:
             raise ValueError(
                 f"Row mismatch in {run_dir}\n"
@@ -407,7 +411,7 @@ def load_run_data_pca(run_dir: Path, condition_name: str, run_name: str):
         this_df["run"] = run_name
 
         dfs.append(this_df)
-        all_vecs.append(vec)
+        all_vecs.append(vec_pca)
 
     df_all = pd.concat(dfs, ignore_index=True)
     X_all = np.concatenate(all_vecs, axis=0)
@@ -419,9 +423,10 @@ def make_animated_plot(df_all: pd.DataFrame, X_all: np.ndarray, out_html: Path):
     # Determine phoneme column
     phoneme_col = PHONEME_COLUMN if PHONEME_COLUMN is not None else infer_phoneme_column(df_all)
 
-    # Fit PCA once across all epochs in this run
-    pca = PCA(n_components=3)
-    X_pca = pca.fit_transform(X_all)
+    # # Fit PCA once across all epochs in this run
+    # pca = PCA(n_components=3)
+    # X_pca = pca.fit_transform(X_all)
+    X_pca = X_all
 
     plot_df = df_all.copy()
     plot_df["PC1"] = X_pca[:, 0]
@@ -435,9 +440,9 @@ def make_animated_plot(df_all: pd.DataFrame, X_all: np.ndarray, out_html: Path):
     title = (
         f"{plot_df['condition'].iloc[0]} | run {plot_df['run'].iloc[0]}"
         f"<br>PCA explained variance: "
-        f"{pca.explained_variance_ratio_[0]:.3f}, "
-        f"{pca.explained_variance_ratio_[1]:.3f}, "
-        f"{pca.explained_variance_ratio_[2]:.3f}"
+        # f"{pca.explained_variance_ratio_[0]:.3f}, "
+        # f"{pca.explained_variance_ratio_[1]:.3f}, "
+        # f"{pca.explained_variance_ratio_[2]:.3f}"
     )
 
     fig = px.scatter_3d(
@@ -515,22 +520,22 @@ def main(config_path):
             run_name = run_dir.name
             print(f"[PROCESSING] condition={condition_name}, run={run_name}")
 
-            try:
-                df_all = load_run_data(run_dir, condition_name, run_name)
-                if df_all is None:
-                    continue
+            # try:
+            #     df_all = load_run_data(run_dir, condition_name, run_name)
+            #     if df_all is None:
+            #         continue
 
-                out_html = OUTPUT_DIR / f"{condition_name}__run_{run_name}__mean_ci.html"
-                make_2d_dimension_subplot_mean_ci(df_all, out_html, ci_level=0.95)
+            #     out_html = OUTPUT_DIR / f"{condition_name}__run_{run_name}__mean_ci.html"
+            #     make_2d_dimension_subplot_mean_ci(df_all, out_html, ci_level=0.95)
 
-            except Exception as e:
-                print(f"[ERROR] Failed on {run_dir}: {e}")
+            # except Exception as e:
+            #     print(f"[ERROR] Failed on {run_dir}: {e}")
 
             try: 
                 df_all, X_all = load_run_data_pca(run_dir, condition_name, run_name)
                 if df_all is None:
                     continue
-                out_html = OUTPUT_DIR / f"{condition_name}__run_{run_name}__pca3d_animation.html"
+                out_html = VEC_OUTPUT_DIR / f"{condition_name}__run_{run_name}__pca3d_animation.html"
                 make_animated_plot(df_all, X_all, out_html)
             except Exception as e: 
                 print(f"[ERROR] Failed PCA plot on {run_dir}: {e}")
