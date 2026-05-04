@@ -520,25 +520,25 @@ def main(config_path):
             run_name = run_dir.name
             print(f"[PROCESSING] condition={condition_name}, run={run_name}")
 
-            # try:
-            #     df_all = load_run_data(run_dir, condition_name, run_name)
-            #     if df_all is None:
-            #         continue
-
-            #     out_html = OUTPUT_DIR / f"{condition_name}__run_{run_name}__mean_ci.html"
-            #     make_2d_dimension_subplot_mean_ci(df_all, out_html, ci_level=0.95)
-
-            # except Exception as e:
-            #     print(f"[ERROR] Failed on {run_dir}: {e}")
-
-            try: 
-                df_all, X_all = load_run_data_pca(run_dir, condition_name, run_name)
+            try:
+                df_all = load_run_data(run_dir, condition_name, run_name)
                 if df_all is None:
                     continue
-                out_html = VEC_OUTPUT_DIR / f"{condition_name}__run_{run_name}__pca3d_animation.html"
-                make_animated_plot(df_all, X_all, out_html)
-            except Exception as e: 
-                print(f"[ERROR] Failed PCA plot on {run_dir}: {e}")
+
+                out_html = OUTPUT_DIR / f"{condition_name}__run_{run_name}__mean_ci.html"
+                make_2d_dimension_subplot_mean_ci(df_all, out_html, ci_level=0.95)
+
+            except Exception as e:
+                print(f"[ERROR] Failed on {run_dir}: {e}")
+
+            # try: 
+            #     df_all, X_all = load_run_data_pca(run_dir, condition_name, run_name)
+            #     if df_all is None:
+            #         continue
+            #     out_html = VEC_OUTPUT_DIR / f"{condition_name}__run_{run_name}__pca3d_animation.html"
+            #     make_animated_plot(df_all, X_all, out_html)
+            # except Exception as e: 
+            #     print(f"[ERROR] Failed PCA plot on {run_dir}: {e}")
 
 
 if __name__ == "__main__": 
