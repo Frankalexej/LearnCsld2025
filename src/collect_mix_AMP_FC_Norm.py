@@ -177,14 +177,14 @@ def main(config_path, run_name=None, write_run_name=None, run_time=0):
             eval_save_dir = eval_save_dir_hyper
             os.makedirs(eval_save_dir, exist_ok=True)
             # Run evaluation and collect outputs
-            evaluate_collect_outputs(
-                model=model,
-                data_loader=dataloader_L1,
-                device=config.DEVICE,
-                npy_path=os.path.join(eval_save_dir, f"vec_E{this_epoch}_L1.npy"),
-                csv_path=os.path.join(eval_save_dir, f"meta_E{this_epoch}_L1.csv"),
-                to_float32=True
-            )
+            # evaluate_collect_outputs(
+            #     model=model,
+            #     data_loader=dataloader_L1,
+            #     device=config.DEVICE,
+            #     npy_path=os.path.join(eval_save_dir, f"vec_E{this_epoch}_L1.npy"),
+            #     csv_path=os.path.join(eval_save_dir, f"meta_E{this_epoch}_L1.csv"),
+            #     to_float32=True
+            # )
             evaluate_collect_outputs(
                 model=model,
                 data_loader=dataloader_L2,
