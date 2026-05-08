@@ -409,7 +409,7 @@ class NonLinearFCClass(NonLinearFC):
     def encoder_names(self): 
         return ("encoder.")
     
-    def predict(self, mapper=None): 
+    def predict(self, x, mapper=None): 
         x = x.reshape(x.size(0), -1)
         hid = self.encoder(x)
         out = self.predictor(hid)
