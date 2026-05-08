@@ -6,4 +6,5 @@ weights
 debug*
 hidrep_*
 inputs
+pred*
 __pycache__
