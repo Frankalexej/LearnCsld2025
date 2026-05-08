@@ -508,12 +508,12 @@ class NPYDatasetInfoPredict_AMP(Dataset):
 
         info = {
             "uid": row["uid"],
-            "path": row["path"],
-            "f1": row["f1"],
-            "vowel_dur": row["vowel_dur"],
-            "f2": row["f2"],
-            "word": row["word"],
-            "consonant": row["consonant"],
+            # "path": row["path"],
+            # "f1": row["f1"],
+            # "vowel_dur": row["vowel_dur"],
+            # "f2": row["f2"],
+            # "word": row["word"],
+            # "consonant": row["consonant"],
             "vowel": row["vowel"],
         }
 
