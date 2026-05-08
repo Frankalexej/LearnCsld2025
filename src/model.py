@@ -408,6 +408,17 @@ class NonLinearFCClass(NonLinearFC):
 
     def encoder_names(self): 
         return ("encoder.")
+    
+    def predict(self, mapper=None): 
+        x = x.reshape(x.size(0), -1)
+        hid = self.encoder(x)
+        out = self.predictor(hid)
+        preds = torch.argmax(out, dim=1)
+        # Map back to labels if mapper is provided
+        if mapper is not None:
+            preds = [mapper[p.item()] for p in preds]
+        return preds
+
 
 class NonLinearFCEncode(NonLinearFC):
     def __init__(self, in_features, hid_features, out_features, intermediate_features=None):
