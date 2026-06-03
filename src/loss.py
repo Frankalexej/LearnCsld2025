@@ -105,6 +105,7 @@ class EWC:
 
         # Debugging: print out the FIM values to check if they are reasonable.
         print("Number of FIM params:", len(fim))
+        print("FIM keys:", list(fim.keys()))
         for name, val in fim.items():
             print(name, val.abs().mean().item(), val.abs().max().item())
             break
