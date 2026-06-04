@@ -33,7 +33,7 @@ BASE_SEED = 20260604          # shared across the entire project
 DETERMINISTIC = False         # True only if you need strict determinism
 
 SIMILARITY = "euclidean"
-RUN_NAME = '0604_RCRC_PARA_EWCp3_1e4_HID2'
+RUN_NAME = '0604_RCRC_PARA_EWCp0_1e4_HID2'
 RUN_TIMES_START = 1
 RUN_TIMES_END = RUN_TIMES_START+10
 SAMPLE_LIST = []
